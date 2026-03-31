@@ -1,6 +1,5 @@
 import './homepage.css'
-import { Input, Card } from '../../components/components.js'
-import testImg from '../../assets/beach.png'
+import { Button } from '../../components/components.js'
 
 const Homepage = () => {
 	return(

@@ -1,8 +1,8 @@
-import styles from './header.module.css'
+import './header.css'
 
 const Header = ({ headerHeight= '18vh'}) => {
 	return(
-		<div className={styles.header} 
+		<div className="header"
 			style={{
 				color: '#6A1A2F',
 				height: headerHeight
