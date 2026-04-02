@@ -5,15 +5,6 @@ const Homepage = () => {
 	return(
 		<div className="home_page">
 
-			<div className="header">
-				<div className="logo">🌴</div>
-
-				<div className="header_icons">
-					<FaUserCircle /> 
-					<FaBars /> 
-				</div>
-			</div>
-
 			<h1 className="title">Welcome to TripBooker!</h1>
 
 			<div className="hero">
