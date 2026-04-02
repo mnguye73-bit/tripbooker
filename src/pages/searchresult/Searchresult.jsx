@@ -4,8 +4,8 @@ const Searchresult = () => {
 	return(
 		<div className="search_result">
 			<div className="tabs">
-				<div className="tab">Hotel</div>
-				<div className="tab active">Homes</div>
+				<div className="tab active">Hotel</div>
+				<div className="tab">Homes</div>
 				<div className="tab">Stays</div>
 			</div>
 
@@ -26,6 +26,8 @@ const Searchresult = () => {
 						<li>Breakfast Included</li>
 						<li>Old Quarter</li>
 					</ul>
+					<p className="rating">7.6 ★</p>
+					<p className="miles">2 miles</p>
 				</div>
 			</div>
 	
@@ -36,6 +38,8 @@ const Searchresult = () => {
 					<ul>
 						<li>Pool</li>
 					</ul>
+					<p className="rating">6.4 ★</p>
+					<p className="miles">1 mile</p>
 				</div>
 			</div>
 		</div>
