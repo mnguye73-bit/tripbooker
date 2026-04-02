@@ -97,4 +97,26 @@
 	cursor: pointer;
 
 	z-index: 2; 
+
 }
+
+  @media (max-width: 600px) {
+      .submit_btn button {
+          color: #ffc857;
+   
+		}
+	.search_bar {
+		flex-direction: column;
+	}
+
+	.options_bar {
+		padding: 0px;
+		width: 100%;
+		height: 18%;
+		gap: 50px;
+	}
+	.title {
+		font-size: 25px;
+		font-weight: 570;  
+	}
+  }
