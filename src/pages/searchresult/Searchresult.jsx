@@ -1,5 +1,9 @@
 import './searchresult.css'
+import Hotel1 from '../../assets/Hotel1.png'
+import Hotel2 from '../../assets/Hotel2.png'
 import { FaHome, FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+
+
 
 const Searchresult = () => {
 	return(
@@ -49,7 +53,7 @@ const Searchresult = () => {
 			</div>
 
 			<div className="card">
-				<img src="" alt=""/>
+				<img src={Hotel1} alt="Hotel 1"/>
 
 				<div className="card_content">
 					<h3>Capella Hanoi</h3>
@@ -63,7 +67,7 @@ const Searchresult = () => {
 			</div>
 	
 			<div className="card">
-				<img src="" alt=""/>
+				<img src={Hotel2} alt="Hotel 2"/>
 				<div className="card_content2">
 					<h3>Hilton Garden In HaNoi</h3>
 					<ul>
