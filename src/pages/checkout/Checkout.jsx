@@ -1,5 +1,5 @@
 import './checkout.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import tripMain from '../../assets/trip-main.jpg'
 import tripBottom from '../../assets/trip-bottom.jpg'
@@ -90,9 +90,20 @@ const Checkout = () => {
 
 	const [errors, setErrors] = useState({})
 	const [bookingComplete, setBookingComplete] = useState(false)
+	const [isSubmitting, setIsSubmitting] = useState(false)
+	const [pageReady, setPageReady] = useState(false)
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setPageReady(true)
+		}, 150)
+
+		return () => clearTimeout(timer)
+	}, [])
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
+
 		setFormData((prev) => ({
 			...prev,
 			[name]: value
@@ -154,6 +165,9 @@ const Checkout = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
+
+		if (isSubmitting) return
+
 		const newErrors = validateForm()
 
 		if (Object.keys(newErrors).length > 0) {
@@ -162,19 +176,26 @@ const Checkout = () => {
 		}
 
 		setErrors({})
-		setBookingComplete(true)
-		window.scrollTo({ top: 0, behavior: 'smooth' })
+		setIsSubmitting(true)
+
+		setTimeout(() => {
+			setIsSubmitting(false)
+			setBookingComplete(true)
+			window.scrollTo({ top: 0, behavior: 'smooth' })
+		}, 1400)
 	}
 
 	if (bookingComplete) {
 		return (
-			<div className="checkout_page">
+			<div className={`checkout_page ${pageReady ? 'page_ready' : ''}`}>
 				<div className="checkout_content">
-					<div className="success_card">
+					<div className="success_card success_show">
 						<div className="success_icon">
 							<FaCheckCircle />
 						</div>
+
 						<h2>Booking Confirmed</h2>
+
 						<p>
 							Your St. Lucia trip has been successfully reserved. A confirmation email
 							has been sent to <strong>{formData.email}</strong>.
@@ -200,9 +221,14 @@ const Checkout = () => {
 						</div>
 
 						<div className="success_actions">
-							<button type="button" className="confirm_btn" onClick={() => navigate('/')}>
+							<button
+								type="button"
+								className="confirm_btn"
+								onClick={() => navigate('/')}
+							>
 								Return Home
 							</button>
+
 							<button
 								type="button"
 								className="secondary_btn"
@@ -233,6 +259,7 @@ const Checkout = () => {
 						>
 							<FaArrowLeft size={18} />
 						</button>
+
 						<button
 							className="footer_nav_btn"
 							aria-label="Next"
@@ -248,7 +275,7 @@ const Checkout = () => {
 	}
 
 	return (
-		<div className="checkout_page">
+		<div className={`checkout_page ${pageReady ? 'page_ready' : ''}`}>
 			<div className="checkout_content">
 				<form className="checkout_left" onSubmit={handleSubmit} noValidate>
 					<section className="form_section">
@@ -566,8 +593,20 @@ const Checkout = () => {
 					</section>
 
 					<section className="checkout_cta_panel">
-						<button className="confirm_btn" type="submit" onClick={handleSubmit}>
-							Complete Secure Booking
+						<button
+							className={`confirm_btn ${isSubmitting ? 'loading' : ''}`}
+							type="submit"
+							onClick={handleSubmit}
+							disabled={isSubmitting}
+						>
+							{isSubmitting ? (
+								<>
+									<span className="spinner"></span>
+									Processing Booking...
+								</>
+							) : (
+								'Complete Secure Booking'
+							)}
 						</button>
 
 						<div className="cta_note">
@@ -602,6 +641,7 @@ const Checkout = () => {
 					>
 						<FaArrowLeft size={18} />
 					</button>
+
 					<button
 						className="footer_nav_btn"
 						aria-label="Next"
