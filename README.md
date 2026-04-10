@@ -25,6 +25,5 @@
 
 # select state on checkout shows all states and is clickable
 
-
 # search with suggestions on search page 
 
