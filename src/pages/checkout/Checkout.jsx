@@ -240,36 +240,6 @@ const Checkout = () => {
 					</div>
 				</div>
 
-				<div className="checkout_footer_bar">
-					<button
-						className="footer_nav_btn"
-						aria-label="Home"
-						type="button"
-						onClick={() => navigate('/')}
-					>
-						<FaHome size={20} />
-					</button>
-
-					<div className="footer_right">
-						<button
-							className="footer_nav_btn"
-							aria-label="Previous"
-							type="button"
-							onClick={() => navigate(-1)}
-						>
-							<FaArrowLeft size={18} />
-						</button>
-
-						<button
-							className="footer_nav_btn"
-							aria-label="Next"
-							type="button"
-							onClick={() => navigate('/searchresult')}
-						>
-							<FaArrowRight size={18} />
-						</button>
-					</div>
-				</div>
 			</div>
 		)
 	}
@@ -619,37 +589,6 @@ const Checkout = () => {
 							<span>Your booking is protected with secure checkout</span>
 						</div>
 					</section>
-				</div>
-			</div>
-
-			<div className="checkout_footer_bar">
-				<button
-					className="footer_nav_btn"
-					aria-label="Home"
-					type="button"
-					onClick={() => navigate('/')}
-				>
-					<FaHome size={20} />
-				</button>
-
-				<div className="footer_right">
-					<button
-						className="footer_nav_btn"
-						aria-label="Previous"
-						type="button"
-						onClick={() => navigate(-1)}
-					>
-						<FaArrowLeft size={18} />
-					</button>
-
-					<button
-						className="footer_nav_btn"
-						aria-label="Next"
-						type="button"
-						onClick={() => navigate('/searchresult')}
-					>
-						<FaArrowRight size={18} />
-					</button>
 				</div>
 			</div>
 		</div>

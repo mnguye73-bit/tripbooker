@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import styles from './app.module.css'
 import Header from './components/header/Header.jsx'
+import { Footer } from './components/components.js'
 import Button from './components/button/Button.jsx'
 import beachPNG from './assets/beach.png'
 
@@ -16,13 +17,16 @@ function App() {
   		<div className={styles.canvas}>
   	  		<Header>
 			</Header>
-			<Routes>
-				<Route path='/' element={<Homepage />}/>
-				<Route path='/searchresult' element={<Searchresult/>}/>
-				<Route path='/checkout' element={<Checkout />}/>
-				<Route path='/errorexample' element={<ErrorExample />}/>
-				<Route path='/profile' element={<Profile />} />
-			</Routes>
+				<Routes>
+					<Route path='/' element={<Homepage />}/>
+					<Route path='/searchresult' element={<Searchresult/>}/>
+					<Route path='/checkout' element={<Checkout />}/>
+					<Route path='/errorexample' element={<ErrorExample />}/>
+					<Route path='/profile' element={<Profile />} />
+				</Routes>
+			<Footer />	
+			<div style={{ height: "8vh", flexShrink: 0}} >
+			</div>
   	  	</div>
   	)
 }

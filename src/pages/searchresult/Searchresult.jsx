@@ -36,15 +36,16 @@ const Searchresult = () => {
   const filterOptions = ["Old Quarter", "Pool", "Breakfast"]
 
   useEffect(() => {
-    let filtered = hotelsData
+    let filtered = hotelsData;
 
+	// (1) search case insensitive name to include a input
     if (query !== "") {
       filtered = filtered.filter(hotel =>
-        hotel.name.toLowerCase().includes(query.toLowerCase()) ||
-        hotel.features.join(" ").toLowerCase().includes(query.toLowerCase())
+        hotel.name.toLowerCase().includes(query.toLowerCase())
       )
     }
 
+	// (2) second option of adding filters 
     if (selectedFilters.length > 0) {
       filtered = filtered.filter(hotel =>
         selectedFilters.every(f =>
@@ -168,38 +169,6 @@ const Searchresult = () => {
           )}
         </>
       )}
-
-      <div className="checkout_footer_bar">
-        <button
-          className="footer_nav_btn"
-          aria-label="Home"
-          type="button"
-          onClick={() => navigate('/')}
-        >
-          <FaHome size={20} />
-        </button>
-
-        <div className="footer_right">
-          <button
-            className="footer_nav_btn"
-            aria-label="Previous"
-            type="button"
-            onClick={() => navigate(-1)}
-          >
-            <FaArrowLeft size={18} />
-          </button>
-
-          <button
-            className="footer_nav_btn"
-            aria-label="Next"
-            type="button"
-            onClick={() => navigate('/searchresult')}
-          >
-            <FaArrowRight size={18} />
-          </button>
-        </div>
-      </div>
-
     </div>
   )
 }

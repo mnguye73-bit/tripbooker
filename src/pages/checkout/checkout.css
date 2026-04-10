@@ -1,6 +1,6 @@
 .checkout_page {
-	min-height: 100vh;
 	background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
+	min-width: 100vh;
 	display: flex;
 	flex-direction: column;
 	font-family: Arial, Helvetica, sans-serif;
@@ -450,8 +450,10 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 12px 16px;
-	margin-top: 18px;
 	box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.16);
+	position: fixed;
+	bottom: 0;
+	left: 0;	
 }
 
 .footer_right {
