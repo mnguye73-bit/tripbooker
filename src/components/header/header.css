@@ -130,24 +130,26 @@
 	.header {
 		grid-template-columns: 72px 1fr 72px;
 		padding: 16px 24px;
-		.nav_link_btn {
-	background: transparent;
-	padding: 10px 16px;
-	border-radius: 999px;
-	width: auto;
-}
+	}
 
-.nav_link_btn:hover {
-	background: #eef4fa;
-}
+	.nav_link_btn {
+		background: transparent;
+		padding: 10px 16px;
+		border-radius: 999px;
+		width: auto;
+	}
 
-.nav_link_btn.active {
-	background: #e0ecff;
-	color: #1d4ed8;
+	.nav_link_btn:hover {
+		background: #eef4fa;
+	}
+
+	.nav_link_btn.active {
+		background: #e0ecff;
+		color: #1d4ed8;
+	}
 }
 		
 
-	}
 
 	.logo {
 		width: 58px;
