@@ -1,21 +1,21 @@
 .checkout_page {
 	min-height: 100vh;
-	background: linear-gradient(180deg, #f6f8fb 0%, #eef2f7 100%);
-	font-family: Arial, Helvetica, sans-serif;
-	color: #1f2937;
+	background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%);
 	display: flex;
 	flex-direction: column;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #1f2937;
 }
 
 .checkout_content {
-	width: 100%;
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 16px;
-	box-sizing: border-box;
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 18px;
+	padding: 16px 12px 24px;
+	max-width: 1280px;
+	margin: 0 auto;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .checkout_left,
@@ -25,11 +25,12 @@
 }
 
 .form_section,
-.summary_section,
-.price_box {
+.booking_card,
+.price_box,
+.checkout_cta_panel {
 	background: #ffffff;
-	border: 1px solid #d9e2ec;
-	border-radius: 20px;
+	border: 1px solid #dbe5ef;
+	border-radius: 22px;
 	box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
 	padding: 18px;
 }
@@ -38,13 +39,23 @@
 	margin-bottom: 0;
 }
 
-.form_section h2,
-.summary_section h2 {
+.section_header {
+	margin-bottom: 14px;
+}
+
+.section_header h2 {
 	font-size: 1.35rem;
 	font-weight: 700;
-	margin: 0 0 14px;
+	margin: 0 0 4px;
 	color: #102a43;
 	letter-spacing: -0.02em;
+}
+
+.section_header p {
+	margin: 0;
+	font-size: 0.92rem;
+	color: #6b7c93;
+	line-height: 1.4;
 }
 
 .form_row {
@@ -65,7 +76,7 @@
 .small_field input,
 .small_field select {
 	height: 48px;
-	border: 1.5px solid #bcccdc;
+	border: 1.5px solid #c7d2de;
 	border-radius: 14px;
 	background: #f8fafc;
 	padding: 0 14px;
@@ -90,7 +101,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 12px;
-	margin-bottom: 14px;
+	margin-bottom: 12px;
 }
 
 .small_field {
@@ -100,12 +111,31 @@
 	min-width: 0;
 }
 
+.trust_row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 8px;
+}
+
+.trust_item {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 12px;
+	border-radius: 999px;
+	background: #f4f7fb;
+	color: #334e68;
+	font-size: 0.88rem;
+	font-weight: 600;
+}
+
 .image_stack {
 	border-radius: 24px;
-	overflow: hidden;
-	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
 	background: #ffffff;
-	border: 1px solid #d9e2ec;
+	border: 1px solid #dbe5ef;
+	box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+	overflow: hidden;
 }
 
 .image_stack img {
@@ -122,27 +152,69 @@
 	display: none;
 }
 
-.summary_section {
-	display: flex;
-	flex-direction: column;
-	gap: 14px;
+.booking_card {
+	background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
 }
 
-.summary_line {
+.booking_badge {
+	display: inline-block;
+	padding: 8px 12px;
+	border-radius: 999px;
+	background: #e0ecff;
+	color: #1d4ed8;
+	font-size: 0.82rem;
+	font-weight: 700;
+	margin-bottom: 12px;
+}
+
+.booking_title {
+	margin: 0 0 6px;
+	font-size: 1.5rem;
+	color: #102a43;
+	letter-spacing: -0.03em;
+}
+
+.booking_subtitle {
+	margin: 0 0 18px;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	color: #6b7c93;
+}
+
+.booking_meta {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 12px;
+}
+
+.booking_meta_item {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-bottom: 10px;
-	border-bottom: 1px solid #e6edf3;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 12px;
+	background: #f8fafc;
+	border-radius: 16px;
+	border: 1px solid #e6edf4;
+}
+
+.booking_meta_item svg {
 	font-size: 1rem;
+	color: #2563eb;
+	margin-top: 4px;
+	flex-shrink: 0;
 }
 
-.summary_line span:first-child {
-	color: #486581;
+.meta_label {
+	display: block;
+	font-size: 0.8rem;
+	color: #6b7c93;
+	margin-bottom: 2px;
 	font-weight: 600;
 }
 
-.summary_line span:last-child {
+.meta_value {
+	display: block;
+	font-size: 0.98rem;
 	color: #102a43;
 	font-weight: 700;
 }
@@ -154,7 +226,7 @@
 .price_box h3 {
 	font-size: 1.3rem;
 	font-weight: 700;
-	margin: 0 0 14px;
+	margin: 0 0 12px;
 	color: #102a43;
 	letter-spacing: -0.02em;
 }
@@ -170,14 +242,14 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 0;
-	border-bottom: 1px solid #e6edf3;
+	padding: 12px 0;
+	border-bottom: 1px solid #e6edf4;
 	font-size: 1rem;
 	color: #334e68;
 }
 
 .price_total {
-	margin-top: 6px;
+	margin-top: 4px;
 	border-bottom: none;
 	padding-top: 16px;
 	font-weight: 800;
@@ -185,17 +257,27 @@
 	color: #102a43;
 }
 
+.inline_icon {
+	margin-right: 6px;
+	vertical-align: middle;
+}
+
+.checkout_cta_panel {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
 .confirm_btn {
-	width: 100%;
-	border: none;
-	border-radius: 16px;
-	padding: 16px 20px;
 	background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
 	color: #ffffff;
+	border: none;
+	padding: 16px 20px;
 	font-size: 1rem;
 	font-weight: 700;
-	letter-spacing: 0.01em;
+	border-radius: 16px;
 	cursor: pointer;
+	width: 100%;
 	box-shadow: 0 12px 24px rgba(37, 99, 235, 0.28);
 	transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
@@ -205,9 +287,18 @@
 	box-shadow: 0 16px 28px rgba(37, 99, 235, 0.34);
 }
 
-.confirm_btn:active {
-	transform: translateY(0);
-	opacity: 0.96;
+.cta_note {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 0.92rem;
+	color: #486581;
+	font-weight: 600;
+}
+
+.cta_note svg {
+	color: #1d4ed8;
+	flex-shrink: 0;
 }
 
 .checkout_footer_bar {
@@ -215,24 +306,37 @@
 	bottom: 0;
 	background: rgba(15, 23, 42, 0.96);
 	backdrop-filter: blur(10px);
-	color: #ffffff;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 14px 18px;
+	padding: 12px 16px;
 	margin-top: 18px;
-	box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.18);
-}
-
-.footer_left,
-.footer_right svg {
-	cursor: pointer;
+	box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.16);
 }
 
 .footer_right {
 	display: flex;
-	gap: 20px;
+	gap: 12px;
 	align-items: center;
+}
+
+.footer_nav_btn {
+	width: 46px;
+	height: 46px;
+	border: none;
+	border-radius: 14px;
+	background: rgba(255, 255, 255, 0.1);
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.footer_nav_btn:hover {
+	background: rgba(255, 255, 255, 0.18);
+	transform: translateY(-1px);
 }
 
 /* tablet */
@@ -243,9 +347,14 @@
 	}
 
 	.form_section,
-	.summary_section,
-	.price_box {
+	.booking_card,
+	.price_box,
+	.checkout_cta_panel {
 		padding: 22px;
+	}
+
+	.section_header h2 {
+		font-size: 1.55rem;
 	}
 
 	.image_stack img:first-child {
@@ -256,29 +365,20 @@
 		display: block;
 		height: 240px;
 	}
-
-	.form_section h2,
-	.summary_section h2 {
-		font-size: 1.6rem;
-	}
-
-	.price_box h3 {
-		font-size: 1.5rem;
-	}
 }
 
 /* desktop */
 @media (min-width: 1100px) {
 	.checkout_content {
-		grid-template-columns: 1fr 1.05fr 0.82fr;
+		grid-template-columns: 0.95fr 1.05fr 0.82fr;
+		padding: 28px 28px 34px;
+		gap: 24px;
 		align-items: start;
-		padding: 30px 28px 34px;
-		gap: 26px;
 	}
 
 	.checkout_right {
 		position: sticky;
-		top: 24px;
+		top: 110px;
 	}
 
 	.form_row {
@@ -289,27 +389,28 @@
 	}
 
 	.form_row label {
-		font-size: 0.96rem;
+		margin: 0;
 	}
 
 	.payment_small_row,
 	.billing_split {
-		grid-template-columns: repeat(2, minmax(120px, 160px));
+		grid-template-columns: repeat(2, minmax(120px, 1fr));
+		gap: 14px;
 	}
 
-	.form_section h2,
-	.summary_section h2 {
-		font-size: 1.9rem;
+	.section_header h2 {
+		font-size: 1.8rem;
+	}
+
+	.booking_title {
+		font-size: 1.8rem;
 	}
 
 	.price_box h3 {
-		font-size: 1.7rem;
+		font-size: 1.55rem;
 	}
 
-	.image_stack img:first-child {
-		height: 300px;
-	}
-
+	.image_stack img:first-child,
 	.image_stack img:last-child {
 		height: 300px;
 	}

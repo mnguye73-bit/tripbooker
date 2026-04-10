@@ -1,7 +1,20 @@
 import './checkout.css'
+import { useNavigate } from 'react-router-dom'
 import tripMain from '../../assets/trip-main.jpg'
 import tripBottom from '../../assets/trip-bottom.jpg'
-import { FaHome, FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+import {
+	FaHome,
+	FaArrowLeft,
+	FaArrowRight,
+	FaLock,
+	FaShieldAlt,
+	FaCheckCircle,
+	FaMapMarkerAlt,
+	FaCalendarAlt,
+	FaUsers,
+	FaBed,
+	FaPlane
+} from 'react-icons/fa'
 
 const states = [
 	'Alabama',
@@ -56,42 +69,48 @@ const states = [
 	'Wyoming'
 ]
 
-
 const Checkout = () => {
+	const navigate = useNavigate()
 	return (
 		<div className="checkout_page">
 			<div className="checkout_content">
 				<div className="checkout_left">
 					<section className="form_section">
-						<h2>Who’s Traveling?</h2>
+						<div className="section_header">
+							<h2>Traveler Details</h2>
+							<p>Enter the primary traveler’s information.</p>
+						</div>
 
 						<div className="form_row">
 							<label htmlFor="firstName">First Name</label>
-							<input id="firstName" type="text" placeholder="Enter first name" />
+							<input id="firstName" type="text" placeholder="Mac" />
 						</div>
 
 						<div className="form_row">
 							<label htmlFor="lastName">Last Name</label>
-							<input id="lastName" type="text" placeholder="Enter last name" />
+							<input id="lastName" type="text" placeholder="Price" />
 						</div>
 
 						<div className="form_row">
 							<label htmlFor="email">Email</label>
-							<input id="email" type="email" placeholder="Enter email" />
+							<input id="email" type="email" placeholder="Price@email.com" />
 						</div>
 
 						<div className="form_row">
 							<label htmlFor="phone">Phone</label>
-							<input id="phone" type="text" placeholder="Enter phone number" />
+							<input id="phone" type="text" placeholder="(704) ***-****" />
 						</div>
 					</section>
 
 					<section className="form_section">
-						<h2>Payment Method</h2>
+						<div className="section_header">
+							<h2>Payment Method</h2>
+							<p>Your payment information is encrypted and secure.</p>
+						</div>
 
 						<div className="form_row">
-							<label htmlFor="cardName">Card Name</label>
-							<input id="cardName" type="text" placeholder="Name on card" />
+							<label htmlFor="cardName">Name on Card</label>
+							<input id="cardName" type="text" placeholder="Mason Walker" />
 						</div>
 
 						<div className="form_row">
@@ -110,19 +129,33 @@ const Checkout = () => {
 								<input id="cvv" type="text" placeholder="123" />
 							</div>
 						</div>
+
+						<div className="trust_row">
+							<div className="trust_item">
+								<FaLock />
+								<span>SSL Encrypted</span>
+							</div>
+							<div className="trust_item">
+								<FaShieldAlt />
+								<span>Secure Payment</span>
+							</div>
+						</div>
 					</section>
 
 					<section className="form_section">
-						<h2>Billing Address</h2>
+						<div className="section_header">
+							<h2>Billing Address</h2>
+							<p>Match this address to your payment method.</p>
+						</div>
 
 						<div className="form_row">
 							<label htmlFor="address">Address</label>
-							<input id="address" type="text" placeholder="Street address" />
+							<input id="address" type="text" placeholder="123 Ocean View Drive" />
 						</div>
 
 						<div className="form_row">
 							<label htmlFor="city">City</label>
-							<input id="city" type="text" placeholder="Enter city" />
+							<input id="city" type="text" placeholder="Charlotte" />
 						</div>
 
 						<div className="billing_split">
@@ -142,7 +175,7 @@ const Checkout = () => {
 
 							<div className="small_field">
 								<label htmlFor="zip">ZIP</label>
-								<input id="zip" type="text" placeholder="28223" />
+								<input id="zip" type="text" placeholder="28227" />
 							</div>
 						</div>
 					</section>
@@ -156,22 +189,43 @@ const Checkout = () => {
 				</div>
 
 				<div className="checkout_right">
-					<section className="summary_section">
-						<h2>Trip Summary</h2>
+					<section className="booking_card">
+						<div className="booking_badge">Reserved Getaway</div>
+						<h2 className="booking_title">St. Lucia Escape Resort</h2>
+						<p className="booking_subtitle">Oceanfront villa package with round-trip flights included.</p>
 
-						<div className="summary_line">
-							<span>Location</span>
-							<span>St. Lucia</span>
-						</div>
+						<div className="booking_meta">
+							<div className="booking_meta_item">
+								<FaMapMarkerAlt />
+								<div>
+									<span className="meta_label">Destination</span>
+									<span className="meta_value">St. Lucia</span>
+								</div>
+							</div>
 
-						<div className="summary_line">
-							<span>Days</span>
-							<span>5</span>
-						</div>
+							<div className="booking_meta_item">
+								<FaCalendarAlt />
+								<div>
+									<span className="meta_label">Dates</span>
+									<span className="meta_value">May 18 – May 23</span>
+								</div>
+							</div>
 
-						<div className="summary_line">
-							<span>Travelers</span>
-							<span>2</span>
+							<div className="booking_meta_item">
+								<FaUsers />
+								<div>
+									<span className="meta_label">Guests</span>
+									<span className="meta_value">2 Adults</span>
+								</div>
+							</div>
+
+							<div className="booking_meta_item">
+								<FaBed />
+								<div>
+									<span className="meta_label">Room</span>
+									<span className="meta_value">1 King Suite</span>
+								</div>
+							</div>
 						</div>
 					</section>
 
@@ -180,17 +234,20 @@ const Checkout = () => {
 						<p>1 Room × 5 Nights</p>
 
 						<div className="price_line">
-							<span>Room Total</span>
+							<span>Resort Stay</span>
 							<span>$1,450</span>
 						</div>
 
 						<div className="price_line">
-							<span>Tickets</span>
+							<span>
+								<FaPlane className="inline_icon" />
+								Flight Tickets
+							</span>
 							<span>$820</span>
 						</div>
 
 						<div className="price_line">
-							<span>Tax & Fees</span>
+							<span>Taxes & Fees</span>
 							<span>$210</span>
 						</div>
 
@@ -200,21 +257,53 @@ const Checkout = () => {
 						</div>
 					</section>
 
-					<button className="confirm_btn">Confirm Checkout</button>
+					<section className="checkout_cta_panel">
+						<button className="confirm_btn">Complete Secure Booking</button>
+
+						<div className="cta_note">
+							<FaCheckCircle />
+							<span>Free cancellation within 24 hours</span>
+						</div>
+
+						<div className="cta_note">
+							<FaLock />
+							<span>Your booking is protected with secure checkout</span>
+						</div>
+					</section>
 				</div>
 			</div>
 
 			<div className="checkout_footer_bar">
-				<div className="footer_left">
-					<FaHome size={24} />
-				</div>
+			<button
+				className="footer_nav_btn"
+				aria-label="Home"
+				type="button"
+				onClick={() => navigate('/')}
+			>
+				<FaHome size={20} />
+			</button>
 
-				<div className="footer_right">
-					<FaArrowLeft size={20} />
-					<FaArrowRight size={20} />
-				</div>
+			<div className="footer_right">
+				<button
+					className="footer_nav_btn"
+					aria-label="Previous"
+					type="button"
+					onClick={() => navigate(-1)}
+				>
+					<FaArrowLeft size={18} />
+				</button>
+
+				<button
+					className="footer_nav_btn"
+					aria-label="Next"
+					type="button"
+					onClick={() => navigate('/searchresult')}
+				>
+					<FaArrowRight size={18} />
+				</button>
 			</div>
 		</div>
+	</div>
 	)
 }
 
