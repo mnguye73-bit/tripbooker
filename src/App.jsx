@@ -24,7 +24,7 @@ function App() {
 					<Route path='/errorexample' element={<ErrorExample />}/>
 					<Route path='/profile' element={<Profile />} />
 				</Routes>
-			<Footer />	
+			<Footer />
 			<div style={{ height: "8vh", flexShrink: 0}} >
 			</div>
   	  	</div>

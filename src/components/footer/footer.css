@@ -1,5 +1,6 @@
 .checkout_footer_bar {
 	height: 8vh;
+	width: 100%;
     background: rgba(15, 23, 42, 0.96);
     backdrop-filter: blur(10px);
     display: flex;
