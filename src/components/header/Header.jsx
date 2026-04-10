@@ -1,16 +1,30 @@
 import './header.css'
 import { useState } from 'react'
 import { FaUser, FaBars, FaTimes, FaHome, FaSearch, FaCreditCard } from 'react-icons/fa'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 
 const Header = () => {
 	const [menuOpen, setMenuOpen] = useState(false)
+	const [profileLoading, setProfileLoading] = useState(false)
 	const location = useLocation()
+	const navigate = useNavigate()
 
 	const closeMenu = () => setMenuOpen(false)
 
 	const isActive = (path) => location.pathname === path
+
+	const handleProfileClick = () => {
+		if (profileLoading) return
+
+		closeMenu()
+		setProfileLoading(true)
+
+		setTimeout(() => {
+			navigate('/profile')
+			setProfileLoading(false)
+		}, 700)
+	}
 
 	return (
 		<>
@@ -35,18 +49,20 @@ const Header = () => {
 						{menuOpen ? <FaTimes /> : <FaBars />}
 					</button>
 
-					<Link to="/" className="icon profile_icon" aria-label="Profile" onClick={closeMenu}>
-						<FaUser />
-					</Link>
+					<button
+						type="button"
+						className={`icon profile_icon ${profileLoading ? 'loading' : ''}`}
+						aria-label="Profile"
+						onClick={handleProfileClick}
+						disabled={profileLoading}
+					>
+						{profileLoading ? <span className="mini_spinner"></span> : <FaUser />}
+					</button>
 				</div>
 			</header>
 
 			<nav className={`sub_nav ${menuOpen ? 'open' : ''}`}>
-				<Link
-					to="/"
-					onClick={closeMenu}
-					className={isActive('/') ? 'active' : ''}
-				>
+				<Link to="/" onClick={closeMenu} className={isActive('/') ? 'active' : ''}>
 					<FaHome />
 					<span>Home</span>
 				</Link>

@@ -9,6 +9,7 @@ import Homepage from './pages/home/Homepage.jsx'
 import Checkout from './pages/checkout/Checkout.jsx'
 import Searchresult from './pages/searchresult/Searchresult.jsx'
 import ErrorExample from './pages/errorexample/ErrorExample.jsx'
+import Profile from './pages/profilepage/Profile.jsx'
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 				<Route path='/searchresult' element={<Searchresult/>}/>
 				<Route path='/checkout' element={<Checkout />}/>
 				<Route path='/errorexample' element={<ErrorExample />}/>
+				<Route path='/profile' element={<Profile />} />
 			</Routes>
   	  	</div>
   	)

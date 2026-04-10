@@ -291,7 +291,7 @@ const Checkout = () => {
 									id="firstName"
 									name="firstName"
 									type="text"
-									placeholder="Mason"
+									placeholder="abc"
 									value={formData.firstName}
 									onChange={handleChange}
 									className={errors.firstName ? 'input_error' : ''}
@@ -307,7 +307,7 @@ const Checkout = () => {
 									id="lastName"
 									name="lastName"
 									type="text"
-									placeholder="Walker"
+									placeholder="defg"
 									value={formData.lastName}
 									onChange={handleChange}
 									className={errors.lastName ? 'input_error' : ''}
@@ -323,7 +323,7 @@ const Checkout = () => {
 									id="email"
 									name="email"
 									type="email"
-									placeholder="mason@email.com"
+									placeholder="abcdefg@email.com"
 									value={formData.email}
 									onChange={handleChange}
 									className={errors.email ? 'input_error' : ''}
@@ -339,7 +339,7 @@ const Checkout = () => {
 									id="phone"
 									name="phone"
 									type="text"
-									placeholder="(704) 555-2184"
+									placeholder="(704) ***-****"
 									value={formData.phone}
 									onChange={handleChange}
 									className={errors.phone ? 'input_error' : ''}
@@ -362,7 +362,7 @@ const Checkout = () => {
 									id="cardName"
 									name="cardName"
 									type="text"
-									placeholder="Mason Walker"
+									placeholder="abc defg"
 									value={formData.cardName}
 									onChange={handleChange}
 									className={errors.cardName ? 'input_error' : ''}
