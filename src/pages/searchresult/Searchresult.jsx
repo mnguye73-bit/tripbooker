@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import './searchresult.css'
 import Hotel1 from '../../assets/Hotel1.png'
 import Hotel2 from '../../assets/Hotel2.png'
-import AutoInput from './AutoInput.jsx'
 import { FaHome, FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 const hotelsData = [
@@ -42,7 +41,7 @@ const Searchresult = () => {
 	// (1) search case insensitive name to include a input
     if (query !== "") {
       filtered = filtered.filter(hotel =>
-        hotel.name.toLowerCase().includes(query.trim().toLowerCase())
+        hotel.name.toLowerCase().includes(query.toLowerCase())
       )
     }
 
@@ -77,11 +76,18 @@ const Searchresult = () => {
 
   return (
     <div className="search_result">
+
       <div className="search_container">
         <input type="date" className="date_input" />
 
         <div style={{ position: "relative" }}>
-			<AutoInput value={query} onChange={(e, { newValue }) => setQuery(newValue)} placeholder="Search for location" inputStyle="search_input" data={hotelsData}/>
+          <input
+            type="text"
+            className="search_input"
+            placeholder="Search for location"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
 
           {showSuggestions && (
             <div className="suggestions">
