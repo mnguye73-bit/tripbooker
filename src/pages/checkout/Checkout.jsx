@@ -101,186 +101,128 @@ const Checkout = () => {
 		return () => clearTimeout(timer)
 	}, [])
 
-	// format phone (###)-###-#### (currently having some trouble)
 	const formatPhone = (value) => {
 		const digits = value.replace(/\D/g, '').slice(0, 10)
 
-		const part1 = digits.slice(0, 3)
-		const part2 = digits.slice(3, 6)
-		const part3 = digits.slice(6, 10)
+		if (digits.length === 0) return ''
+		if (digits.length <= 3) return digits
+		if (digits.length <= 6) return `(${digits.slice(0, 3)})-${digits.slice(3)}`
+		return `(${digits.slice(0, 3)})-${digits.slice(3, 6)}-${digits.slice(6)}`
+	}
 
-		if (digits.length <= 3) return part1
-		if (digits.length <= 6) return `(${part1})-${part2}`
-		return `(${part1})-${part2}-${part3}`
-}
-
-	// format card #### #### #### #### (currently having some trouble)
 	const formatCard = (value) => {
 		const digits = value.replace(/\D/g, '').slice(0, 16)
-
 		return digits.replace(/(\d{4})(?=\d)/g, '$1 ')
-}
+	}
+
+	const formatExp = (value) => {
+		const digits = value.replace(/\D/g, '').slice(0, 4)
+
+		if (digits.length <= 2) return digits
+		return `${digits.slice(0, 2)}/${digits.slice(2)}`
+	}
+
+	const validateForm = (data = formData) => {
+		const newErrors = {}
+
+		if (!data.firstName.trim()) {
+			newErrors.firstName = 'First name is required.'
+		} else if (!/^[A-Za-z]{3,}$/.test(data.firstName.trim())) {
+			newErrors.firstName = 'Only letters, needs to be more than 3 characters.'
+		}
+
+		if (!data.lastName.trim()) {
+			newErrors.lastName = 'Last name is required.'
+		} else if (!/^[A-Za-z]{3,}$/.test(data.lastName.trim())) {
+			newErrors.lastName = 'Only letters, needs to be more than 3 characters.'
+		}
+
+		if (!data.email.trim()) {
+			newErrors.email = 'Email is required.'
+		} else if (!data.email.includes('@')) {
+			newErrors.email = 'Email must include "@" symbol.'
+		} else if (!data.email.toLowerCase().endsWith('.com')) {
+			newErrors.email = 'Email must end in .com.'
+		}
+
+		const cleanPhone = data.phone.replace(/\D/g, '')
+		if (!cleanPhone) {
+			newErrors.phone = 'Phone number is required.'
+		} else if (cleanPhone.length !== 10) {
+			newErrors.phone = 'Phone number must be exactly 10 digits.'
+		}
+
+		if (!data.cardName.trim()) {
+			newErrors.cardName = 'Name on card is required.'
+		}
+
+		const cleanCard = data.cardNumber.replace(/\D/g, '')
+		if (!cleanCard) {
+			newErrors.cardNumber = 'Card number is required.'
+		} else if (!/^\d{16}$/.test(cleanCard)) {
+			newErrors.cardNumber = 'Card number must be exactly 16 digits.'
+		}
+
+		if (!data.exp.trim()) {
+			newErrors.exp = 'Expiration date is required.'
+		} else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(data.exp)) {
+			newErrors.exp = 'Use MM/YY format.'
+		}
+
+		if (!data.cvv.trim()) {
+			newErrors.cvv = 'CVV is required.'
+		} else if (!/^\d{3}$/.test(data.cvv)) {
+			newErrors.cvv = 'CVV must be exactly 3 digits.'
+		}
+
+		if (!data.address.trim()) {
+			newErrors.address = 'Billing address is required.'
+		}
+
+		if (!data.city.trim()) {
+			newErrors.city = 'City is required.'
+		} else if (!/^[A-Za-z\s]+$/.test(data.city.trim())) {
+			newErrors.city = 'City cannot contain numbers or special characters.'
+		} else if (data.city.trim().length < 3) {
+			newErrors.city = 'City must be at least 3 characters long.'
+		}
+
+		if (!data.state.trim()) {
+			newErrors.state = 'Please select a state.'
+		}
+
+		if (!data.zip.trim()) {
+			newErrors.zip = 'ZIP code is required.'
+		} else if (!/^\d{5}$/.test(data.zip)) {
+			newErrors.zip = 'ZIP must be exactly 5 digits.'
+		}
+
+		return newErrors
+	}
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
 		let newValue = value
 
-	// phone formatting
-	if (name === 'phone') {
-		newValue = formatPhone(value)
-	}
-
-	// card formatting
-	else if (name === 'cardNumber') {
-		newValue = formatCard(value)
-	}
-
-	// numeric-only fields
-	else if (['cvv', 'zip'].includes(name)) {
-		newValue = value.replace(/\D/g, '')
-	}
-
-		// restrict numeric-only fields
-		if (['phone', 'cardNumber', 'cvv', 'zip'].includes(name)) {
-			newValue = value.replace(/\D/g, '')
-	}
-
-		// limit input lengths
-		if (name === 'phone') newValue = newValue.slice(0, 10)
-		if (name === 'cvv') newValue = newValue.slice(0, 3)
-		if (name === 'zip') newValue = newValue.slice(0, 5)
-		if (name == 'cardNumber') newValue = newValue.slice(0, 16)
+		if (name === 'phone') {
+			newValue = formatPhone(value)
+		} else if (name === 'cardNumber') {
+			newValue = formatCard(value)
+		} else if (name === 'cvv') {
+			newValue = value.replace(/\D/g, '').slice(0, 3)
+		} else if (name === 'zip') {
+			newValue = value.replace(/\D/g, '').slice(0, 5)
+		} else if (name === 'exp') {
+			newValue = formatExp(value)
+		}
 
 		const updatedData = {
-		...formData,
-		[name]: newValue // use cleaned value instead of raw input
-	}
-		setFormData(updatedData) 
-
-		// real-time validation (runs BEFORE submit)
-		const newErrors = validateForm(updatedData)
-		setErrors(newErrors)
-	}
-
-
-	const validateForm = () => {
-		const newErrors = {}
-/*
-		if (!formData.firstName.trim()) newErrors.firstName = 'First name is required.'
-		if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required.'
-
-		if (!formData.email.trim()) {
-			newErrors.email = 'Email is required.'
-		} else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-			newErrors.email = 'Enter a valid email address.'
+			...formData,
+			[name]: newValue
 		}
 
-		if (!formData.phone.trim()) newErrors.phone = 'Phone number is required.'
-
-		if (!formData.cardName.trim()) newErrors.cardName = 'Name on card is required.'
-
-		const cleanedCardNumber = formData.cardNumber.replace(/\s/g, '')
-		if (!cleanedCardNumber) {
-			newErrors.cardNumber = 'Card number is required.'
-		} else if (!/^\d{13,19}$/.test(cleanedCardNumber)) {
-			newErrors.cardNumber = 'Enter a valid card number.'
-		}
-
-		if (!formData.exp.trim()) {
-			newErrors.exp = 'Expiration date is required.'
-		} else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.exp)) {
-			newErrors.exp = 'Use MM/YY format.'
-		}
-
-		if (!formData.cvv.trim()) {
-			newErrors.cvv = 'CVV is required.'
-		} else if (!/^\d{3,4}$/.test(formData.cvv)) {
-			newErrors.cvv = 'Enter a valid CVV.'
-		}
-
-		if (!formData.address.trim()) newErrors.address = 'Billing address is required.'
-		if (!formData.city.trim()) newErrors.city = 'City is required.'
-		if (!formData.state.trim()) newErrors.state = 'Please select a state.'
-
-		if (!formData.zip.trim()) {
-			newErrors.zip = 'ZIP code is required.'
-		} else if (!/^\d{5}(-\d{4})?$/.test(formData.zip)) {
-			newErrors.zip = 'Enter a valid ZIP code.'
-		}
-	*/
-		// First Name validation
-		if (!formData.firstName.trim()) {
-			newErrors.firstName = 'First name is required.'
-		} else if (!/^[A-Za-z]{3,}$/.test(formData.firstName)) {
-			newErrors.firstName = 'Only letters, needs to be more than 3 characters.'
-		}
-
-		// Last Name validation
-		if (!formData.lastName.trim()) {
-			newErrors.lastName = 'Last name is required.'
-		} else if (!/^[A-Za-z]{3,}$/.test(formData.lastName)) {
-			newErrors.lastName = 'Only letters, needs to be more than 3 characters.'
-		}
-
-		// Email must include @ AND be gmail or yahoo
-		if (!formData.email.trim()) {
-		newErrors.email = 'Email is required.'
-		} else if (!formData.email.includes('@')) {
-		newErrors.email = 'Email must include "@" symbol.'
-		} else if (!/^[^\s@]+@(gmail\.com|yahoo\.com)$/.test(formData.email)) {
-		newErrors.email = 'Email must end with @gmail.com or @yahoo.com.'
-		}
-
-		// Phone validation with formatting
-		const cleanPhone = formData.phone.replace(/\D/g, '')
-		if (!cleanPhone) {
-		newErrors.phone = 'Phone number is required.'
-		} else if (cleanPhone.length !== 10) {
-		newErrors.phone = 'Phone number must be exactly 10 digits.'
-		}
-
-		// card number validation with fromatting
-		const cleanCard = formData.cardNumber.replace(/\D/g, '')
-		if (!cleanCard) {
-		newErrors.cardNumber = 'Card number is required.'
-		} else if (!/^\d{13,19}$/.test(cleanCard)) {
-		newErrors.cardNumber = 'Enter a valid card number.'
-		}
-
-		if (!formData.exp.trim()) {
-			newErrors.exp = 'Expiration date is required.'
-		} else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.exp)) {
-			newErrors.exp = 'Use MM/YY format.'
-		}
-
-		// CVV exactly 3 digits
-		if (!formData.cvv.trim()) {
-			newErrors.cvv = 'CVV is required.'
-		} else if (!/^\d{3}$/.test(formData.cvv)) {
-			newErrors.cvv = 'CVV must be exactly 3 digits.'
-		}
-
-		//HEREHERE: City validation (letters only, no digits)
-		if (!formData.city.trim()) {
-		newErrors.city = 'City is required.'
-		} else if (!/^[A-Za-z\s]+$/.test(formData.city)) {
-		newErrors.city = 'City cannot contain numbers or special characters.'
-		} else if (formData.city.trim().length < 3) {
-		newErrors.city = 'City must be at least 3 characters long.'
-		}
-
-		if (!formData.address.trim()) newErrors.address = 'Billing address is required.'
-		//if (!formData.city.trim()) newErrors.city = 'City needs to be at least 3 characters long.'
-		if (!formData.state.trim()) newErrors.state = 'Please select a state.'
-
-		//  ZIP exactly 5 digits
-		if (!formData.zip.trim()) {
-			newErrors.zip = 'ZIP code is required.'
-		} else if (!/^\d{5}$/.test(formData.zip)) {
-			newErrors.zip = 'ZIP must be exactly 5 digits.'
-		}
-
-		return newErrors
+		setFormData(updatedData)
+		setErrors(validateForm(updatedData))
 	}
 
 	const handleSubmit = (e) => {
@@ -288,7 +230,7 @@ const Checkout = () => {
 
 		if (isSubmitting) return
 
-		const newErrors = validateForm()
+		const newErrors = validateForm(formData)
 
 		if (Object.keys(newErrors).length > 0) {
 			setErrors(newErrors)
@@ -359,7 +301,6 @@ const Checkout = () => {
 						</div>
 					</div>
 				</div>
-
 			</div>
 		)
 	}
@@ -429,7 +370,7 @@ const Checkout = () => {
 									id="phone"
 									name="phone"
 									type="text"
-									placeholder="(704) ***-****"
+									placeholder="(704) 123-4567"
 									value={formData.phone}
 									onChange={handleChange}
 									className={errors.phone ? 'input_error' : ''}
