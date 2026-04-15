@@ -172,18 +172,50 @@
 	font-size: 15px;
 }
 
-.filter_box{
+.filter_box {
 	width: 25px;
 	height: 25px;
 	background-color: #3B5884;
 	border: 2px solid black;
+	border-radius: 6px;
 	opacity: 0.5;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 
-.filter_item{
+.filter_box::after {
+	content: '✓';
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	opacity: 0;
+	transform: scale(0.7);
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.active_filter {
+	background-color: #1e4f78;
+	opacity: 1;
+	border-color: #0f2f4d;
+}
+
+.active_filter::after {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.filter_item {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.filter_item:hover .filter_box {
+	transform: scale(1.05);
 }
 
 @media (max-width: 768px) {
@@ -283,4 +315,134 @@
 
 .tab:hover {
 	background-color: #1e4f78;
+}
+
+.search_control {
+	position: relative;
+}
+
+.search_popup {
+	position: absolute;
+	top: calc(100% + 10px);
+	left: 50%;
+	transform: translateX(-50%);
+	width: 320px;
+	max-width: 90vw;
+	background: rgba(255, 255, 255, 0.98);
+	border-radius: 16px;
+	box-shadow: 0 16px 36px rgba(15, 23, 42, 0.22);
+	border: 1px solid #d9e2ec;
+	padding: 14px;
+	z-index: 30;
+}
+
+.popup_title {
+	font-size: 16px;
+	font-weight: 700;
+	color: #243a6f;
+	margin-bottom: 12px;
+	text-align: center;
+}
+
+.date_picker_popup {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.date_fields {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.date_field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.date_field label {
+	font-size: 14px;
+	font-weight: 600;
+	color: #3f5c85;
+}
+
+.date_field input {
+	height: 44px;
+	border: 1px solid #c9d4e4;
+	border-radius: 10px;
+	padding: 0 12px;
+	font-size: 15px;
+	color: #1f2937;
+	background: #ffffff;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+	cursor: pointer;
+}
+
+.date_field input:hover {
+	border-color: #4a6b99;
+	background-color: #f8fbff;
+	box-shadow: 0 0 0 4px rgba(74, 107, 153, 0.12);
+	transform: translateY(-1px);
+}
+
+.date_field input:focus {
+	border-color: #243a6f;
+	background-color: #ffffff;
+	box-shadow: 0 0 0 4px rgba(36, 58, 111, 0.14);
+	outline: none;
+}
+
+.date_field input::-webkit-calendar-picker-indicator {
+	cursor: pointer;
+	opacity: 0.9;
+	transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.date_field input:hover::-webkit-calendar-picker-indicator {
+	transform: scale(1.08);
+	opacity: 1;
+}
+
+.date_search_button {
+	padding: 14px;
+	font-size: 16px;
+	border: 1px solid black;
+	border-radius: 10px;
+	background-color: white;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-width: 190px;
+	justify-content: center;
+}
+
+.date_search_button:hover {
+	background-color: #f8fbff;
+}
+
+.popup_done_btn {
+	width: 100%;
+	border: none;
+	border-radius: 12px;
+	padding: 12px 16px;
+	background: #243a6f;
+	color: #ffc857;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.popup_done_btn:hover {
+	background: #2c4786;
+	transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+	.search_popup {
+		width: 280px;
+	}
 }

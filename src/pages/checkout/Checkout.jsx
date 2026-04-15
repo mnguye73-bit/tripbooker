@@ -92,6 +92,7 @@ const Checkout = () => {
 	const [bookingComplete, setBookingComplete] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [pageReady, setPageReady] = useState(false)
+	const [submitFeedback, setSubmitFeedback] = useState('')
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -101,66 +102,132 @@ const Checkout = () => {
 		return () => clearTimeout(timer)
 	}, [])
 
-	const handleChange = (e) => {
-		const { name, value } = e.target
+	const formatPhone = (value) => {
+		const digits = value.replace(/\D/g, '').slice(0, 10)
 
-		setFormData((prev) => ({
-			...prev,
-			[name]: value
-		}))
-
-		setErrors((prev) => ({
-			...prev,
-			[name]: ''
-		}))
+		if (digits.length === 0) return ''
+		if (digits.length <= 3) return digits
+		if (digits.length <= 6) return `(${digits.slice(0, 3)})-${digits.slice(3)}`
+		return `(${digits.slice(0, 3)})-${digits.slice(3, 6)}-${digits.slice(6)}`
 	}
 
-	const validateForm = () => {
+	const formatCard = (value) => {
+		const digits = value.replace(/\D/g, '').slice(0, 16)
+		return digits.replace(/(\d{4})(?=\d)/g, '$1 ')
+	}
+
+	const formatExp = (value) => {
+		const digits = value.replace(/\D/g, '').slice(0, 4)
+
+		if (digits.length <= 2) return digits
+		return `${digits.slice(0, 2)}/${digits.slice(2)}`
+	}
+
+	const validateForm = (data = formData) => {
 		const newErrors = {}
 
-		if (!formData.firstName.trim()) newErrors.firstName = 'First name is required.'
-		if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required.'
+		if (!data.firstName.trim()) {
+			newErrors.firstName = 'First name is required.'
+		} else if (!/^[A-Za-z]{3,}$/.test(data.firstName.trim())) {
+			newErrors.firstName = 'Only letters, needs to be more than 3 characters.'
+		}
 
-		if (!formData.email.trim()) {
+		if (!data.lastName.trim()) {
+			newErrors.lastName = 'Last name is required.'
+		} else if (!/^[A-Za-z]{3,}$/.test(data.lastName.trim())) {
+			newErrors.lastName = 'Only letters, needs to be more than 3 characters.'
+		}
+
+		if (!data.email.trim()) {
 			newErrors.email = 'Email is required.'
-		} else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-			newErrors.email = 'Enter a valid email address.'
+		} else if (!data.email.includes('@')) {
+			newErrors.email = 'Email must include "@" symbol.'
+		} else if (!data.email.toLowerCase().endsWith('.com')) {
+			newErrors.email = 'Email must end in .com.'
 		}
 
-		if (!formData.phone.trim()) newErrors.phone = 'Phone number is required.'
+		const cleanPhone = data.phone.replace(/\D/g, '')
+		if (!cleanPhone) {
+			newErrors.phone = 'Phone number is required.'
+		} else if (cleanPhone.length !== 10) {
+			newErrors.phone = 'Phone number must be exactly 10 digits.'
+		}
 
-		if (!formData.cardName.trim()) newErrors.cardName = 'Name on card is required.'
+		if (!data.cardName.trim()) {
+			newErrors.cardName = 'Name on card is required.'
+		}
 
-		const cleanedCardNumber = formData.cardNumber.replace(/\s/g, '')
-		if (!cleanedCardNumber) {
+		const cleanCard = data.cardNumber.replace(/\D/g, '')
+		if (!cleanCard) {
 			newErrors.cardNumber = 'Card number is required.'
-		} else if (!/^\d{13,19}$/.test(cleanedCardNumber)) {
-			newErrors.cardNumber = 'Enter a valid card number.'
+		} else if (!/^\d{16}$/.test(cleanCard)) {
+			newErrors.cardNumber = 'Card number must be exactly 16 digits.'
 		}
 
-		if (!formData.exp.trim()) {
+		if (!data.exp.trim()) {
 			newErrors.exp = 'Expiration date is required.'
-		} else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(formData.exp)) {
+		} else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(data.exp)) {
 			newErrors.exp = 'Use MM/YY format.'
 		}
 
-		if (!formData.cvv.trim()) {
+		if (!data.cvv.trim()) {
 			newErrors.cvv = 'CVV is required.'
-		} else if (!/^\d{3,4}$/.test(formData.cvv)) {
-			newErrors.cvv = 'Enter a valid CVV.'
+		} else if (!/^\d{3}$/.test(data.cvv)) {
+			newErrors.cvv = 'CVV must be exactly 3 digits.'
 		}
 
-		if (!formData.address.trim()) newErrors.address = 'Billing address is required.'
-		if (!formData.city.trim()) newErrors.city = 'City is required.'
-		if (!formData.state.trim()) newErrors.state = 'Please select a state.'
+		if (!data.address.trim()) {
+			newErrors.address = 'Billing address is required.'
+		}
 
-		if (!formData.zip.trim()) {
+		if (!data.city.trim()) {
+			newErrors.city = 'City is required.'
+		} else if (!/^[A-Za-z\s]+$/.test(data.city.trim())) {
+			newErrors.city = 'City cannot contain numbers or special characters.'
+		} else if (data.city.trim().length < 3) {
+			newErrors.city = 'City must be at least 3 characters long.'
+		}
+
+		if (!data.state.trim()) {
+			newErrors.state = 'Please select a state.'
+		}
+
+		if (!data.zip.trim()) {
 			newErrors.zip = 'ZIP code is required.'
-		} else if (!/^\d{5}(-\d{4})?$/.test(formData.zip)) {
-			newErrors.zip = 'Enter a valid ZIP code.'
+		} else if (!/^\d{5}$/.test(data.zip)) {
+			newErrors.zip = 'ZIP must be exactly 5 digits.'
 		}
 
 		return newErrors
+	}
+
+	const handleChange = (e) => {
+		const { name, value } = e.target
+		let newValue = value
+
+		if (name === 'phone') {
+			newValue = formatPhone(value)
+		} else if (name === 'cardNumber') {
+			newValue = formatCard(value)
+		} else if (name === 'cvv') {
+			newValue = value.replace(/\D/g, '').slice(0, 3)
+		} else if (name === 'zip') {
+			newValue = value.replace(/\D/g, '').slice(0, 5)
+		} else if (name === 'exp') {
+			newValue = formatExp(value)
+		}
+
+		const updatedData = {
+			...formData,
+			[name]: newValue
+		}
+
+		setFormData(updatedData)
+		setErrors(validateForm(updatedData))
+
+		if (submitFeedback) {
+			setSubmitFeedback('')
+		}
 	}
 
 	const handleSubmit = (e) => {
@@ -168,13 +235,16 @@ const Checkout = () => {
 
 		if (isSubmitting) return
 
-		const newErrors = validateForm()
+		const newErrors = validateForm(formData)
 
 		if (Object.keys(newErrors).length > 0) {
 			setErrors(newErrors)
+			setSubmitFeedback('Please complete all required fields before submitting.')
+			window.scrollTo({ top: 0, behavior: 'smooth' })
 			return
 		}
 
+		setSubmitFeedback('')
 		setErrors({})
 		setIsSubmitting(true)
 
@@ -239,7 +309,6 @@ const Checkout = () => {
 						</div>
 					</div>
 				</div>
-
 			</div>
 		)
 	}
@@ -248,6 +317,12 @@ const Checkout = () => {
 		<div className={`checkout_page ${pageReady ? 'page_ready' : ''}`}>
 			<div className="checkout_content">
 				<form className="checkout_left" onSubmit={handleSubmit} noValidate>
+					{submitFeedback && (
+						<div className="submit_feedback">
+							{submitFeedback}
+						</div>
+					)}
+
 					<section className="form_section">
 						<div className="section_header">
 							<h2>Traveler Details</h2>
@@ -309,7 +384,7 @@ const Checkout = () => {
 									id="phone"
 									name="phone"
 									type="text"
-									placeholder="(704) ***-****"
+									placeholder="(704) 123-4567"
 									value={formData.phone}
 									onChange={handleChange}
 									className={errors.phone ? 'input_error' : ''}
