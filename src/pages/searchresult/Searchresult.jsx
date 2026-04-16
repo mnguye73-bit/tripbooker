@@ -248,7 +248,7 @@ const Searchresult = () => {
           onClick={handleSearch}
           disabled={loading}
         >
-          {loading ? "Loading..." : "Search"}
+          {loading ? <div className="spinner"></div> : "Search"}
         </button>
       </div>
 
@@ -274,7 +274,7 @@ const Searchresult = () => {
       </div>
 
       {loading ? (
-        <div className="loader">Loading results...</div>
+		<></>
       ) : (
         <>
           {results.length === 0 ? (
