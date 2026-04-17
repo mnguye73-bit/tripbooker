@@ -38,6 +38,7 @@ const Homepage = () => {
 	const [startDate, setStartDate] = useState('')
 	const [endDate, setEndDate] = useState('')
 	const [travelers, setTravelers] = useState(1)
+	const [selectedOptions, setSelectedOptions] = useState([])
 
 	const locationRef = useRef(null)
 	const dateRef = useRef(null)
@@ -85,6 +86,14 @@ const Homepage = () => {
 		if (value < 1) return
 		if (value > 20) return
 		setTravelers(value)
+	}
+
+	const toggleOption = (option) => {
+		setSelectedOptions((prev) =>
+			prev.includes(option)
+				? prev.filter((item) => item !== option)
+				: [...prev, option]
+		)
 	}
 
 	return (
@@ -242,25 +251,41 @@ const Homepage = () => {
 				</div>
 
 				<div className="options_bar">
-					<div className="option_item">
+					<button
+						type="button"
+						className={`option_item ${selectedOptions.includes('Hotel') ? 'option_item_active' : ''}`}
+						onClick={() => toggleOption('Hotel')}
+					>
 						<FaBed />
 						<span>Hotel</span>
-					</div>
+					</button>
 
-					<div className="option_item">
+					<button
+						type="button"
+						className={`option_item ${selectedOptions.includes('Flight') ? 'option_item_active' : ''}`}
+						onClick={() => toggleOption('Flight')}
+					>
 						<FaPlane />
 						<span>Flight</span>
-					</div>
+					</button>
 
-					<div className="option_item">
+					<button
+						type="button"
+						className={`option_item ${selectedOptions.includes('Rental') ? 'option_item_active' : ''}`}
+						onClick={() => toggleOption('Rental')}
+					>
 						<FaCar />
 						<span>Rental</span>
-					</div>
+					</button>
 
-					<div className="option_item">
+					<button
+						type="button"
+						className={`option_item ${selectedOptions.includes('Cruise') ? 'option_item_active' : ''}`}
+						onClick={() => toggleOption('Cruise')}
+					>
 						<FaShip />
 						<span>Cruise</span>
-					</div>
+					</button>
 				</div>
 
 				<div className="submit_btn">
@@ -280,7 +305,8 @@ const Homepage = () => {
 											selectedLocation === 'Location(s)' ? '' : selectedLocation,
 										startDate,
 										endDate,
-										travelers
+										travelers,
+										selectedOptions
 									}
 								})
 							}, 900)
@@ -289,7 +315,6 @@ const Homepage = () => {
 						{isSubmitting ? (
 							<>
 								<span className="mini_spinner"></span>
-								
 							</>
 						) : (
 							'Submit'

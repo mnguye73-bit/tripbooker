@@ -441,7 +441,7 @@
 	height: 18px;
 	display: inline-block;
 	border: 2px solid rgba(255, 255, 255, 0.35);
-	border-top-color: #ffffff;
+	border-top-color: #7c1f2c;
 	border-radius: 50%;
 	animation: spin 0.75s linear infinite;
 }
