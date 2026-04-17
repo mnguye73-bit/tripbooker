@@ -17,15 +17,15 @@
 
 # assignment 11
 
-# spinner loading states on buttons 'home, search, checkout, submit' on home page. Spinner on profile button in header. spinner on search in search page
+spinner loading states on buttons 'home, search, checkout, submit' on home page. Spinner on profile button in header. spinner on search in search page
 
-# small animations when hovering over 'hotel, flight, rental, cruise' on home page. Hover states also added throughout website buttons. on checkout page added small enlarge animation when hovering over sections of the page. fade ins on all pages
+small animations when hovering over 'hotel, flight, rental, cruise' on home page. Hover states also added throughout website buttons. on checkout page added small enlarge animation when hovering over sections of the page. fade ins on all pages
 
-# when clicking "complete secure booking" an error message is displayed on information not yet filled out
+when clicking "complete secure booking" an error message is displayed on information not yet filled out
 
-# select state on checkout shows all states and is clickable
+select state on checkout shows all states and is clickable
 
-# search with suggestions on search page 
+search with suggestions on search page 
 
 # Assignment 12
 
