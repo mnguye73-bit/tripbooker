@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import './searchresult.css'
-import Hotel1 from '../../assets/Hotel1.png'
-import Hotel2 from '../../assets/Hotel2.png'
-import Ritz from '../../assets/ritz.png'
-import Omni from '../../assets/omni.png'
-import Hyatt from '../../assets/hyatt.png'
-import Marriott from '../../assets/marriott.png'
-import Hyatt_Raleigh from '../../assets/hyatt_raleigh.png'
-import Umstead from '../../assets/umstead.png'
-import AutoInput from './AutoInput.jsx'
-import { FaHome, FaArrowLeft, FaArrowRight, FaCalendarAlt } from 'react-icons/fa'
+import "./searchresult.css";
+import Hotel1 from "../../assets/Hotel1.png";
+import Hotel2 from "../../assets/Hotel2.png";
+import Ritz from "../../assets/ritz.png";
+import Omni from "../../assets/omni.png";
+import Hyatt from "../../assets/hyatt.png";
+import Marriott from "../../assets/marriott.png";
+import Hyatt_Raleigh from "../../assets/hyatt_raleigh.png";
+import Umstead from "../../assets/umstead.png";
+import AutoInput from "./AutoInput.jsx";
+import { FaHome, FaArrowLeft, FaArrowRight, FaCalendarAlt } from "react-icons/fa";
 
 const hotelsData = [
   {
@@ -85,99 +85,94 @@ const hotelsData = [
     miles: "1.2 miles",
     image: Hyatt_Raleigh
   }
-]
+];
 
 const Searchresult = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const dateRef = useRef(null)
+  const dateRef = useRef(null);
 
-  const incomingLocation = location.state?.selectedLocation || ''
-  const incomingStartDate = location.state?.startDate || ''
-  const incomingEndDate = location.state?.endDate || ''
+  const incomingLocation = location.state?.selectedLocation || "";
+  const incomingStartDate = location.state?.startDate || "";
+  const incomingEndDate = location.state?.endDate || "";
 
-  const [query, setQuery] = useState(incomingLocation)
-  const [results, setResults] = useState(hotelsData)
-  const [loading, setLoading] = useState(false)
-  const [showSuggestions, setShowSuggestions] = useState(false)
-  const [selectedFilters, setSelectedFilters] = useState([])
-  const [showDatePicker, setShowDatePicker] = useState(false)
-  const [startDate, setStartDate] = useState(incomingStartDate)
-  const [endDate, setEndDate] = useState(incomingEndDate)
+  const [query, setQuery] = useState(incomingLocation);
+  const [results, setResults] = useState(hotelsData);
+  const [loading, setLoading] = useState(false);
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [startDate, setStartDate] = useState(incomingStartDate);
+  const [endDate, setEndDate] = useState(incomingEndDate);
 
-  const filterOptions = ["Old Quarter", "Pool", "Breakfast"]
+  const filterOptions = ["Old Quarter", "Pool", "Breakfast"];
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dateRef.current && !dateRef.current.contains(event.target)) {
-        setShowDatePicker(false)
+        setShowDatePicker(false);
       }
-    }
+    };
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
-    let filtered = hotelsData
+    let filtered = hotelsData;
 
     if (query.trim() !== "") {
-      setShowSuggestions(true)
-
-      filtered = filtered.filter(hotel =>
-        hotel.name.toLowerCase().includes(query.toLowerCase()) ||
-        hotel.city.toLowerCase().includes(query.toLowerCase()) ||
-        hotel.features.join(" ").toLowerCase().includes(query.toLowerCase())
-      )
-    } else {
-      setShowSuggestions(false)
+      filtered = filtered.filter(
+        (hotel) =>
+          hotel.name.toLowerCase().includes(query.toLowerCase()) ||
+          hotel.city.toLowerCase().includes(query.toLowerCase()) ||
+          hotel.features.join(" ").toLowerCase().includes(query.toLowerCase())
+      );
     }
 
     if (selectedFilters.length > 0) {
-      filtered = filtered.filter(hotel =>
-        selectedFilters.every(f =>
-          hotel.features.some(feature =>
+      filtered = filtered.filter((hotel) =>
+        selectedFilters.every((f) =>
+          hotel.features.some((feature) =>
             feature.toLowerCase().includes(f.toLowerCase())
           )
         )
-      )
+      );
     }
 
     if (incomingLocation) {
       filtered = [...filtered].sort((a, b) => {
-        const aMatch = a.name === incomingLocation ? 1 : 0
-        const bMatch = b.name === incomingLocation ? 1 : 0
-        return bMatch - aMatch
-      })
+        const aMatch = a.name === incomingLocation ? 1 : 0;
+        const bMatch = b.name === incomingLocation ? 1 : 0;
+        return bMatch - aMatch;
+      });
     }
 
-    setResults(filtered)
-  }, [query, selectedFilters, incomingLocation])
+    setResults(filtered);
+  }, [query, selectedFilters, incomingLocation]);
 
   const handleSearch = () => {
-    setLoading(true)
+    setLoading(true);
     setTimeout(() => {
-      setLoading(false)
-    }, 1200)
-  }
+      setLoading(false);
+    }, 1200);
+  };
 
   const toggleFilter = (filter) => {
-    setSelectedFilters(prev =>
+    setSelectedFilters((prev) =>
       prev.includes(filter)
-        ? prev.filter(f => f !== filter)
+        ? prev.filter((f) => f !== filter)
         : [...prev, filter]
-    )
-  }
+    );
+  };
 
   const formatDateRange = () => {
-    if (startDate && endDate) return `${startDate} → ${endDate}`
-    if (startDate) return startDate
-    return 'Select Date(s)'
-  }
+    if (startDate && endDate) return `${startDate} → ${endDate}`;
+    if (startDate) return startDate;
+    return "Select Date(s)";
+  };
 
   return (
     <div className="search_result">
-
       <div className="search_container">
         <div className="search_control" ref={dateRef}>
           <button
@@ -201,11 +196,11 @@ const Searchresult = () => {
                     type="date"
                     value={startDate}
                     onChange={(e) => {
-                      const newStart = e.target.value
-                      setStartDate(newStart)
+                      const newStart = e.target.value;
+                      setStartDate(newStart);
 
                       if (endDate && newStart > endDate) {
-                        setEndDate('')
+                        setEndDate("");
                       }
                     }}
                   />
@@ -217,7 +212,7 @@ const Searchresult = () => {
                     id="resultsEndDate"
                     type="date"
                     value={endDate}
-                    min={startDate || ''}
+                    min={startDate || ""}
                     onChange={(e) => setEndDate(e.target.value)}
                   />
                 </div>
@@ -234,7 +229,7 @@ const Searchresult = () => {
           )}
         </div>
 
-        <div style={{ position: "relative" }}>
+        <div className="search_input_wrap">
           <AutoInput
             value={query}
             onChange={(e, { newValue }) => setQuery(newValue)}
@@ -258,34 +253,40 @@ const Searchresult = () => {
         <div className="tab">Stays</div>
       </div>
 
-      <p className="filters">Filters:</p>
+      <div className="results_layout">
+        <aside className="filters_panel">
+          <p className="filters_title">Filters</p>
 
-      <div className="filter_list">
-        {filterOptions.map(option => (
-          <div
-            key={option}
-            className="filter_item"
-            onClick={() => toggleFilter(option)}
-          >
-            <div className={`filter_box ${selectedFilters.includes(option) ? "active_filter" : ""}`}></div>
-            {option}
+          <div className="filter_list">
+            {filterOptions.map((option) => (
+              <div
+                key={option}
+                className="filter_item"
+                onClick={() => toggleFilter(option)}
+              >
+                <div
+                  className={`filter_box ${
+                    selectedFilters.includes(option) ? "active_filter" : ""
+                  }`}
+                ></div>
+                <span>{option}</span>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </aside>
 
-      {loading ? (
-		<></>
-      ) : (
-        <>
-          {results.length === 0 ? (
-            <p>No results found</p>
+        <section className="results_panel">
+          {loading ? null : results.length === 0 ? (
+            <p className="no_results">No results found</p>
           ) : (
-            results.map(hotel => (
+            results.map((hotel) => (
               <div key={hotel.id} className="card fade-in">
                 <img src={hotel.image} alt={hotel.name} />
 
                 <div className="card_content">
                   <h3>{hotel.name}</h3>
+                  <p className="hotel_city">{hotel.city}</p>
+
                   <ul>
                     {hotel.features.map((f, i) => (
                       <li key={i}>{f}</li>
@@ -298,15 +299,15 @@ const Searchresult = () => {
               </div>
             ))
           )}
-        </>
-      )}
+        </section>
+      </div>
 
       <div className="checkout_footer_bar">
         <button
           className="footer_nav_btn"
           aria-label="Home"
           type="button"
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
         >
           <FaHome size={20} />
         </button>
@@ -325,15 +326,14 @@ const Searchresult = () => {
             className="footer_nav_btn"
             aria-label="Next"
             type="button"
-            onClick={() => navigate('/searchresult')}
+            onClick={() => navigate("/searchresult")}
           >
             <FaArrowRight size={18} />
           </button>
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Searchresult
+export default Searchresult;
