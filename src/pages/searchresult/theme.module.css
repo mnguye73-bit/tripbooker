@@ -11,6 +11,23 @@
 	top: 3.5rem;
 	z-index: 999;
 	border: 1px solid black;
-	padding: 0.5rem;
 	background-color: white;
+	border-radius: 0.5rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.suggestion {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.suggestion:last-of-type {
+	margin-bottom: 0;
+}
+
+.suggestion:hover { 
+	background-color: #e8eef8;
 }

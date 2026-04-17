@@ -458,6 +458,9 @@
 }
 
 @media (max-width: 600px) {
+	.search_button {
+		padding: 1rem 0;
+	}
 	.search_popup {
 		width: 280px;
 	}

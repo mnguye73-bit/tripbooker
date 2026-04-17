@@ -10,19 +10,21 @@ const getSuggestions = (value, data) => {
 
   if (inputLength === 0) return [];
 
-  return data.filter(
+	// add where if array length 0 return dummy suggestion
+  const suggestions = data.filter(
     (element) =>
       element.name.toLowerCase().includes(inputValue)
   );
+	if (suggestions.length === 0) return [{name: "No results"}];
+	return suggestions;
 };
 
 const getSuggestionValue = (suggestion) => {
-
   return suggestion?.name ?? "";
 };
 
 const renderSuggestion = (suggestion) => (
-  <div>{suggestion.name}</div>
+  	<div>{suggestion.name}</div>
 );
 
 const AutoInput = ({ value, onChange, placeholder, inputStyle, data}) => {
