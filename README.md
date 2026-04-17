@@ -29,7 +29,7 @@
 
 # Assignment 12
 
-Our form we worked on for this assignment 12 is the CHECKOUT PAGE . We have added all the assignment details expected from us incliduing fixing of previous asignment 10 and 11 comments. 
+Our form we worked on for this assignment 12 is the CHECKOUT PAGE . We have added all the assignment details expected from us including fixing of previous asignment 10 and 11 comments. 
 
 Addressing the comment, "Mobile design patterns are different from mobile apps. Mobile patterns use icons over text label signifiers because of limited screen space. Currently, the desktop elements seem cramped on the mobile screen rather than being adapted for a mobile-first layout, which doesn't follow responsive design best practices," from Assignment 10: during our usability study, our users were having a hard time understanding what each icon present on the home screen represented. Therefore, we had to add text, and it now looks different from our wireframes.
 
