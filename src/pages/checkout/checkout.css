@@ -380,7 +380,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 20px;
+	padding: 200px;
 	z-index: 2000;
 }
 
@@ -601,4 +601,11 @@
 	.image_stack img:last-child {
 		height: 300px;
 	}
+
+	
+
+
+
 }
+
+
