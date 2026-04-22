@@ -1,10 +1,11 @@
 import './header.css'
 import { useState } from 'react'
 import { FaUser, FaBars, FaTimes, FaHome, FaSearch, FaCreditCard } from 'react-icons/fa'
+import Toggle from '../toggle/Toggle.jsx'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 
-const Header = () => {
+const Header = ( {checked, toggleChange}) => {
 	const [menuOpen, setMenuOpen] = useState(false)
 	const [profileLoading, setProfileLoading] = useState(false)
 	const location = useLocation()
@@ -47,12 +48,12 @@ const Header = () => {
 						<img src={logo} alt="Trip Booker logo" className="logo" />
 					</Link>
 				</div>
-
 				<div className="header_center">
 					<h1>Trip Booker</h1>
 				</div>
 
 				<div className="header_right">
+					<Toggle checked={checked} onChange={toggleChange}/>
 					<button
 						className="menu_btn"
 						onClick={() => setMenuOpen(!menuOpen)}

@@ -1,7 +1,19 @@
+.light {
+  --bg: white;
+  --text: black;
+}
+
+.dark {
+  --bg: #403E3E;
+  --text: white;
+}
+
 .canvas { 
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	background-color: var(--bg);
+	color: var(--text);
 }
 
 ::-webkit-scrollbar {

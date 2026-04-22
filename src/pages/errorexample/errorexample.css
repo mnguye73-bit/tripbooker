@@ -5,16 +5,6 @@
 	height: 100vh;
 }
 
-.title {
-	text-align: center;
-	background: #f3f3f3;
-	padding: 20px 0; 
-	color: #7b1e2b;
-	font-weight: 600; 
-	font-size: 32px; 
-	margin: 0;
-}
-
 .hero {
 	flex: 1;
 	background-image: url('../../assets/beach.png');

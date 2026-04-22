@@ -1,8 +1,7 @@
 .search_result {
 	font-family: Arial, sans-serif;
 	padding: 32px;
-	background: linear-gradient(180deg, #f8fbff 0%, #eef4f8 100%);
-	min-height: 100vh;
+	background: var(--bg);
 	box-sizing: border-box;
 }
 

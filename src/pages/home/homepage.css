@@ -1,3 +1,13 @@
+.title {	
+	text-align: center;
+	background: var(--bg);
+	padding: 20px 0; 
+	color: #7b1e2b;
+	font-weight: 600; 
+	font-size: 32px; 
+	margin: 0;
+}
+
 .search_control {
 	position: relative;
 }
