@@ -135,15 +135,25 @@
 	box-shadow: 0 8px 18px rgba(29, 78, 216, 0.08);
 }
 
-.nav_link_btn svg,
-.nav_link_btn .mini_spinner {
+.nav_link_btn svg {
 	flex-shrink: 0;
 }
 
-.mini_spinner {
-	width: 18px;
-	height: 18px;
-	border: 2px solid rgba(122, 31, 43, 0.25);
+.screen_spinner_overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(255, 255, 255, 0.35);
+	backdrop-filter: blur(4px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+}
+
+.screen_spinner {
+	width: 90px;
+	height: 90px;
+	border: 8px solid rgba(122, 31, 43, 0.2);
 	border-top-color: #7a1f2b;
 	border-radius: 50%;
 	animation: spin 0.75s linear infinite;
@@ -195,5 +205,13 @@
 		justify-content: center;
 		border-radius: 999px;
 		padding: 14px 20px;
+	}
+}
+
+@media (max-width: 600px) {
+	.screen_spinner {
+		width: 72px;
+		height: 72px;
+		border-width: 7px;
 	}
 }

@@ -5,7 +5,7 @@ import Toggle from '../toggle/Toggle.jsx'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
 
-const Header = ( {checked, toggleChange}) => {
+const Header = ({ checked, toggleChange }) => {
 	const [menuOpen, setMenuOpen] = useState(false)
 	const [profileLoading, setProfileLoading] = useState(false)
 	const location = useLocation()
@@ -16,8 +16,10 @@ const Header = ( {checked, toggleChange}) => {
 
 	const isActive = (path) => location.pathname === path
 
+	const isAnyLoading = profileLoading || navLoading !== ''
+
 	const handleProfileClick = () => {
-		if (profileLoading) return
+		if (profileLoading || navLoading) return
 
 		closeMenu()
 		setProfileLoading(true)
@@ -29,31 +31,39 @@ const Header = ( {checked, toggleChange}) => {
 	}
 
 	const handleNavClick = (path) => {
-	if (navLoading || location.pathname === path) return
+		if (navLoading || profileLoading || location.pathname === path) return
 
-	closeMenu()
-	setNavLoading(path)
+		closeMenu()
+		setNavLoading(path)
 
-	setTimeout(() => {
-		navigate(path)
-		setNavLoading('')
-	}, 500)
-}
+		setTimeout(() => {
+			navigate(path)
+			setNavLoading('')
+		}, 500)
+	}
 
 	return (
 		<>
+			{isAnyLoading && (
+				<div className="screen_spinner_overlay">
+					<div className="screen_spinner"></div>
+				</div>
+			)}
+
 			<header className="header">
 				<div className="header_left">
 					<Link to="/" onClick={closeMenu} className="logo_link">
 						<img src={logo} alt="Trip Booker logo" className="logo" />
 					</Link>
 				</div>
+
 				<div className="header_center">
 					<h1>Trip Booker</h1>
 				</div>
 
 				<div className="header_right">
-					<Toggle checked={checked} onChange={toggleChange}/>
+					<Toggle checked={checked} onChange={toggleChange} />
+
 					<button
 						className="menu_btn"
 						onClick={() => setMenuOpen(!menuOpen)}
@@ -65,12 +75,12 @@ const Header = ( {checked, toggleChange}) => {
 
 					<button
 						type="button"
-						className={`icon profile_icon ${profileLoading ? 'loading' : ''}`}
+						className="icon profile_icon"
 						aria-label="Profile"
 						onClick={handleProfileClick}
-						disabled={profileLoading}
+						disabled={profileLoading || navLoading}
 					>
-						{profileLoading ? <span className="mini_spinner"></span> : <FaUser />}
+						<FaUser />
 					</button>
 				</div>
 			</header>
@@ -80,9 +90,9 @@ const Header = ( {checked, toggleChange}) => {
 					type="button"
 					className={`nav_link_btn ${isActive('/') ? 'active' : ''}`}
 					onClick={() => handleNavClick('/')}
-					disabled={navLoading === '/'}
+					disabled={navLoading === '/' || profileLoading}
 				>
-					{navLoading === '/' ? <span className="mini_spinner"></span> : <FaHome />}
+					<FaHome />
 					<span>Home</span>
 				</button>
 
@@ -90,9 +100,9 @@ const Header = ( {checked, toggleChange}) => {
 					type="button"
 					className={`nav_link_btn ${isActive('/searchresult') ? 'active' : ''}`}
 					onClick={() => handleNavClick('/searchresult')}
-					disabled={navLoading === '/searchresult'}
+					disabled={navLoading === '/searchresult' || profileLoading}
 				>
-					{navLoading === '/searchresult' ? <span className="mini_spinner"></span> : <FaSearch />}
+					<FaSearch />
 					<span>Search</span>
 				</button>
 
@@ -100,9 +110,9 @@ const Header = ( {checked, toggleChange}) => {
 					type="button"
 					className={`nav_link_btn ${isActive('/checkout') ? 'active' : ''}`}
 					onClick={() => handleNavClick('/checkout')}
-					disabled={navLoading === '/checkout'}
+					disabled={navLoading === '/checkout' || profileLoading}
 				>
-					{navLoading === '/checkout' ? <span className="mini_spinner"></span> : <FaCreditCard />}
+					<FaCreditCard />
 					<span>Checkout</span>
 				</button>
 			</nav>

@@ -1,43 +1,82 @@
 .checkout_footer_bar {
 	height: 8vh;
 	width: 100%;
-    background: rgba(15, 23, 42, 0.96);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    margin-top: 18px;
-    box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.16);
+	background: rgba(15, 23, 42, 0.96);
+	backdrop-filter: blur(10px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 16px;
+	margin-top: 18px;
+	box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.16);
 	position: fixed;
 	bottom: 0;
 	z-index: 900;
 }
 
 .footer_right {
-    display: flex;
-    gap: 12px;
-    align-items: center;
+	display: flex;
+	gap: 12px;
+	align-items: center;
 }
 
 .footer_nav_btn {
-    width: 46px;
-    height: 46px;
-    border: none;
-    border-radius: 14px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
+	width: 46px;
+	height: 46px;
+	border: none;
+	border-radius: 14px;
+	background: rgba(255, 255, 255, 0.1);
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
 }
 
 .footer_nav_btn:hover {
-    background: rgba(255, 255, 255, 0.18);
-    transform: translateY(-1px);
+	background: rgba(255, 255, 255, 0.18);
+	transform: translateY(-1px);
+}
+
+.footer_nav_btn:disabled {
+	cursor: not-allowed;
+	opacity: 0.9;
+}
+
+.screen_spinner_overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(255, 255, 255, 0.35);
+	backdrop-filter: blur(4px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 9999;
+}
+
+.screen_spinner {
+	width: 90px;
+	height: 90px;
+	border: 8px solid rgba(255, 255, 255, 0.22);
+	border-top-color: #ffffff;
+	border-radius: 50%;
+	animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .filler_footer {
+}
+
+@media (max-width: 600px) {
+	.screen_spinner {
+		width: 72px;
+		height: 72px;
+		border-width: 7px;
+	}
 }

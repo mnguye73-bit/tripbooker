@@ -198,7 +198,6 @@
 	border-radius: 18px;
 	background: rgba(255, 255, 255, 0.18);
 	backdrop-filter: blur(8px);
-
 	width: fit-content;
 	max-width: 820px;
 	margin: 0 auto;
@@ -240,20 +239,24 @@
 	color: #ffd24d;
 }
 
-.mini_spinner {
-	width: 18px;
-	height: 18px;
-	display: inline-block;
-	border: 2px solid rgba(122, 31, 43, 0.25);
-	border-top-color: #7c1f2c;
-	border-radius: 50%;
-	animation: spin 0.75s linear infinite;
-}
-
-.submit_btn button.loading {
+.screen_spinner_overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(255, 255, 255, 0.35);
+	backdrop-filter: blur(4px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 9999;
+}
+
+.screen_spinner {
+	width: 90px;
+	height: 90px;
+	border: 8px solid rgba(122, 31, 43, 0.2);
+	border-top-color: #7c1f2c;
+	border-radius: 50%;
+	animation: spin 0.75s linear infinite;
 }
 
 @keyframes spin {
@@ -284,10 +287,6 @@
 		gap: 4px;
 	}
 
-	
-
-	/* FORCE MOBILE ICON SIZE FIX */
-@media (max-width: 600px) {
 	.options_bar .option_item svg {
 		font-size: 30px !important;
 	}
@@ -300,5 +299,10 @@
 		padding: 8px 10px !important;
 		min-width: 30px !important;
 	}
-}
+
+	.screen_spinner {
+		width: 72px;
+		height: 72px;
+		border-width: 7px;
+	}
 }

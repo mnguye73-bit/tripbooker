@@ -4,17 +4,14 @@ import { useNavigate } from 'react-router-dom'
 import tripMain from '../../assets/trip-main.jpg'
 import tripBottom from '../../assets/trip-bottom.jpg'
 import {
-	FaHome,
-	FaArrowLeft,
-	FaArrowRight,
-	FaLock,
-	FaShieldAlt,
 	FaCheckCircle,
 	FaMapMarkerAlt,
 	FaCalendarAlt,
 	FaUsers,
 	FaBed,
-	FaPlane
+	FaPlane,
+	FaLock,
+	FaShieldAlt
 } from 'react-icons/fa'
 
 const states = [
@@ -257,6 +254,12 @@ const Checkout = () => {
 
 	return (
 		<div className={`checkout_page ${pageReady ? 'page_ready' : ''}`}>
+			{isSubmitting && (
+				<div className="screen_spinner_overlay">
+					<div className="screen_spinner"></div>
+				</div>
+			)}
+
 			<div className="checkout_content">
 				<form className="checkout_left" onSubmit={handleSubmit} noValidate>
 					{submitFeedback && (
@@ -581,19 +584,12 @@ const Checkout = () => {
 
 					<section className="checkout_cta_panel">
 						<button
-							className={`confirm_btn ${isSubmitting ? 'loading' : ''}`}
+							className="confirm_btn"
 							type="submit"
 							onClick={handleSubmit}
 							disabled={isSubmitting}
 						>
-							{isSubmitting ? (
-								<>
-									<span className="spinner"></span>
-									Processing Booking...
-								</>
-							) : (
-								'Complete Secure Booking'
-							)}
+							Complete Secure Booking
 						</button>
 
 						<div className="cta_note">

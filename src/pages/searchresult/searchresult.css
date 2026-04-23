@@ -435,20 +435,24 @@
 	transform: translateY(-1px);
 }
 
-.mini_spinner {
-	width: 18px;
-	height: 18px;
-	display: inline-block;
-	border: 2px solid rgba(255, 255, 255, 0.35);
-	border-top-color: #7c1f2c;
-	border-radius: 50%;
-	animation: spin 0.75s linear infinite;
-}
-
-.submit_btn button.loading {
+.screen_spinner_overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(255, 255, 255, 0.35);
+	backdrop-filter: blur(4px);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 9999;
+}
+
+.screen_spinner {
+	width: 90px;
+	height: 90px;
+	border: 8px solid rgba(44, 106, 160, 0.2);
+	border-top-color: #1e4f78;
+	border-radius: 50%;
+	animation: spin 0.75s linear infinite;
 }
 
 @keyframes spin {
@@ -551,5 +555,11 @@
 
 	.card_content h3 {
 		font-size: 19px;
+	}
+
+	.screen_spinner {
+		width: 72px;
+		height: 72px;
+		border-width: 7px;
 	}
 }

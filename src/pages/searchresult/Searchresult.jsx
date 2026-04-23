@@ -151,6 +151,8 @@ const Searchresult = () => {
   }, [query, selectedFilters, incomingLocation]);
 
   const handleSearch = () => {
+    if (loading) return;
+
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -173,6 +175,12 @@ const Searchresult = () => {
 
   return (
     <div className="search_result">
+      {loading && (
+        <div className="screen_spinner_overlay">
+          <div className="screen_spinner"></div>
+        </div>
+      )}
+
       <div className="search_container">
         <div className="search_control" ref={dateRef}>
           <button
@@ -243,7 +251,7 @@ const Searchresult = () => {
           onClick={handleSearch}
           disabled={loading}
         >
-          {loading ? <div className="mini_spinner"></div> : "Search"}
+          Search
         </button>
       </div>
 

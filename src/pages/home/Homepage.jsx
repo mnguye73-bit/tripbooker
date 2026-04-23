@@ -8,10 +8,7 @@ import {
 	FaBed,
 	FaPlane,
 	FaCar,
-	FaShip,
-	FaHome,
-	FaArrowLeft,
-	FaArrowRight
+	FaShip
 } from 'react-icons/fa'
 
 const locationOptions = [
@@ -98,6 +95,12 @@ const Homepage = () => {
 
 	return (
 		<div className={`home_page ${pageReady ? 'page_ready' : ''}`}>
+			{isSubmitting && (
+				<div className="screen_spinner_overlay">
+					<div className="screen_spinner"></div>
+				</div>
+			)}
+
 			<h1 className="title">Find Your Destination!</h1>
 
 			<div className="hero">
@@ -291,7 +294,6 @@ const Homepage = () => {
 				<div className="submit_btn">
 					<button
 						type="button"
-						className={isSubmitting ? 'loading' : ''}
 						disabled={isSubmitting}
 						onClick={() => {
 							if (isSubmitting) return
@@ -312,13 +314,7 @@ const Homepage = () => {
 							}, 900)
 						}}
 					>
-						{isSubmitting ? (
-							<>
-								<span className="mini_spinner"></span>
-							</>
-						) : (
-							'Submit'
-						)}
+						Submit
 					</button>
 				</div>
 			</div>
