@@ -110,7 +110,7 @@ const Profile = () => {
 								<FaCog />
 								<div>
 									<span className="stat_label">Settings</span>
-									<strong>Dark mode off</strong>
+									
 								</div>
 							</div>
 						</div>

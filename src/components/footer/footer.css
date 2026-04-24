@@ -80,16 +80,36 @@
 		border-width: 7px;
 	}
 
-	body.dark .screen_spinner_overlay {
+}
+body.light .checkout_footer_bar {
+	background: #ffffff;
+	border-top: 1px solid #dbe5ef;
+}
+
+body.light .footer_nav_btn {
+	background: #f1f5f9;
+	color: #0f172a;
+}
+
+body.dark .checkout_footer_bar {
+	background: #0B264F;
+	border-top: 1px solid #334155;
+}
+
+body.dark .footer_nav_btn {
+	background: #0B264F;
+	color: #f9fafb;
+}
+
+body.dark .footer_nav_btn:hover {
+	background: #111827;
+}
+
+body.dark .screen_spinner_overlay {
 	background: rgba(15, 23, 42, 0.45);
 }
 
 body.dark .screen_spinner {
 	border-color: rgba(248, 250, 252, 0.25);
 	border-top-color: #f8fafc;
-}
-
-body.dark .checkout_footer_bar {
-	background: rgba(15, 23, 42, 0.96);
-}
 }
