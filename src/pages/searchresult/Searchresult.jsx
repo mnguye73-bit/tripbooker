@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./searchresult.css";
+import TripMain from "../../assets/trip-main.jpg";
 import Hotel1 from "../../assets/Hotel1.png";
 import Hotel2 from "../../assets/Hotel2.png";
 import Ritz from "../../assets/ritz.png";
@@ -14,7 +15,16 @@ import { FaHome, FaArrowLeft, FaArrowRight, FaCalendarAlt } from "react-icons/fa
 
 const hotelsData = [
   {
-    id: 1,
+  id: 1,
+  name: "St. Lucia Escape Resort",
+  city: "St. Lucia",
+  features: ["Oceanfront Villa", "Round-trip Flights", "Pool", "Breakfast"],
+  rating: "9.7",
+  miles: "Beachfront",
+  image: TripMain
+  },
+  {
+    id: 2,
     name: "Capella Hanoi",
     city: "Hanoi",
     features: ["Breakfast Included", "Old Quarter"],
@@ -23,7 +33,7 @@ const hotelsData = [
     image: Hotel1
   },
   {
-    id: 2,
+    id: 3,
     name: "Hilton Garden Inn Hanoi",
     city: "Hanoi",
     features: ["Pool"],
@@ -32,7 +42,7 @@ const hotelsData = [
     image: Hotel2
   },
   {
-    id: 3,
+    id: 4,
     name: "The Ritz-Carlton Charlotte",
     city: "Charlotte",
     features: ["Pool", "Breakfast Included"],
@@ -41,7 +51,7 @@ const hotelsData = [
     image: Ritz
   },
   {
-    id: 4,
+    id: 5,
     name: "Hyatt Place Charlotte Downtown",
     city: "Charlotte",
     features: ["Breakfast Included"],
@@ -50,7 +60,7 @@ const hotelsData = [
     image: Hyatt
   },
   {
-    id: 5,
+    id: 6,
     name: "Omni Charlotte Hotel",
     city: "Charlotte",
     features: ["Pool"],
@@ -59,7 +69,7 @@ const hotelsData = [
     image: Omni
   },
   {
-    id: 6,
+    id: 7,
     name: "The Umstead Hotel and Spa",
     city: "Raleigh",
     features: ["Pool"],
@@ -68,7 +78,7 @@ const hotelsData = [
     image: Umstead
   },
   {
-    id: 7,
+    id: 8,
     name: "Raleigh Marriott City Center",
     city: "Raleigh",
     features: ["Breakfast Included"],
@@ -77,7 +87,7 @@ const hotelsData = [
     image: Marriott
   },
   {
-    id: 8,
+    id: 9,
     name: "Hyatt House Raleigh Downtown",
     city: "Raleigh",
     features: ["Pool", "Breakfast Included"],
@@ -104,7 +114,7 @@ const Searchresult = () => {
   const [startDate, setStartDate] = useState(incomingStartDate);
   const [endDate, setEndDate] = useState(incomingEndDate);
 
-  const filterOptions = ["Old Quarter", "Pool", "Breakfast"];
+  const filterOptions = ["Old Quarter", "Pool", "Breakfast", "Oceanfront"];
 
   useEffect(() => {
     const handleClickOutside = (event) => {

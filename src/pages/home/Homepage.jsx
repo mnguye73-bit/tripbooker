@@ -15,6 +15,7 @@ import beachPNG from '../../assets/beach.png'
 import beachNight from '../../assets/beachnight.jpg'
 
 const locationOptions = [
+	'St. Lucia Escape Resort',
 	'Capella Hanoi',
 	'Hilton Garden Inn Hanoi',
 	'The Ritz-Carlton Charlotte',
@@ -22,7 +23,8 @@ const locationOptions = [
 	'Omni Charlotte Hotel',
 	'The Umstead Hotel and Spa',
 	'Raleigh Marriott City Center',
-	'Hyatt House Raleigh Downtown'
+	'Hyatt House Raleigh Downtown',
+	'St. Lucia Escape Resort'
 ]
 
 const Homepage = () => {
@@ -340,6 +342,12 @@ const Homepage = () => {
 	<h2>Popular Deals</h2>
 
 	<div className="deals_scroll">
+		<div className="deal_card">
+			<h3>St. Lucia Escape Resort</h3>
+			<p>Oceanfront villa package with round trip flights</p>
+			<span>Rating 9.7 ★</span>
+		</div>
+
 		<div className="deal_card">
 			<h3>Capella Hanoi</h3>
 			<p>Old Quarter stay with breakfast included</p>
