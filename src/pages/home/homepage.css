@@ -28,7 +28,7 @@
 
 .search_control .search_item:hover {
 	transform: translateY(-2px);
-	box-shadow: 0 12px 24px rgba(55, 97, 196, 0.35);
+	box-shadow: 0 6px 12px rgba(55, 97, 196, 0.22);
 }
 
 .search_popup {
@@ -271,7 +271,7 @@
 	border: 3px solid #f3b41b;
 	border-radius: 18px;
 	background: rgba(20, 13, 65, 0.03);
-	backdrop-filter: blur(200px);
+	backdrop-filter: blur(40px);
 	width: fit-content;
 	max-width: 820px;
 	margin: 0 auto;
@@ -366,8 +366,10 @@
 	display: flex;
 	gap: 14px;
 	overflow-x: auto;
+	overflow-y: hidden;
 	padding-bottom: 12px;
-	scroll-snap-type: x mandatory;
+	scroll-snap-type: none;
+	overscroll-behavior: auto;
 }
 
 .deals_scroll::-webkit-scrollbar {
@@ -381,7 +383,7 @@
 
 .deal_card {
 	min-width: 210px;
-	scroll-snap-align: start;
+	
 	padding: 16px;
 	border-radius: 16px;
 	background: rgba(255, 255, 255, 0.88);
@@ -689,3 +691,5 @@ body.dark .deal_card span {
 		border-width: 7px;
 	}
 }
+
+
