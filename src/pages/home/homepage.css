@@ -230,8 +230,8 @@
 	font-size: 34px;
 }
 .option_item svg {
-	width: 80px !important;
-	height: 80px !important;
+	width: 30px !important;
+	height: 30px !important;
 }
 .option_item:hover {
 	background: rgba(255, 255, 255, 0.14);
@@ -505,14 +505,6 @@ body.dark .deal_card p {
 
 body.dark .deal_card span {
 	color: #93c5fd;
-}
-
-body.dark, html.dark {
-	background-color: #0f172a;
-}
-
-.homepage{
-	background-color: transparent;
 }
 
 /* Mobile */
