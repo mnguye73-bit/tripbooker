@@ -140,7 +140,7 @@ const Homepage = () => {
 				</div>
 			)}
 
-			<h1 className="title">Find Your Destination!</h1>
+		
 
 			<div
 				className="hero"
