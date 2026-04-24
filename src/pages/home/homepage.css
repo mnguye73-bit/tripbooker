@@ -200,8 +200,8 @@
 	padding: 18px 26px;
 	border: 3px solid #f3b41b;
 	border-radius: 18px;
-	background: rgba(255, 255, 255, 0.35);
-	backdrop-filter: blur(8px);
+	background: rgba(20, 13, 65, 0.03);
+	backdrop-filter: blur(200px);
 	width: fit-content;
 	max-width: 820px;
 	margin: 0 auto;
@@ -229,7 +229,10 @@
 .option_item svg {
 	font-size: 34px;
 }
-
+.option_item svg {
+	width: 80px !important;
+	height: 80px !important;
+}
 .option_item:hover {
 	background: rgba(255, 255, 255, 0.14);
 	transform: translateY(-2px);
