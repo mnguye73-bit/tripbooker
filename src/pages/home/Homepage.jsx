@@ -337,7 +337,7 @@ const Homepage = () => {
 						<span>Cruise</span>
 					</button>
 				</div>
-
+			</div>				
 				<div className="deals_section">
 	<h2>Popular Deals</h2>
 
@@ -425,7 +425,8 @@ const Homepage = () => {
 					</button>
 				</div>
 			</div>
-		</div>
+	
+		
 	)
 }
 

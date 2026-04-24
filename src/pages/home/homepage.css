@@ -273,6 +273,8 @@
 
 .hero {
 	position: relative;
+	min-height: 100vh;
+	height: auto;
 	overflow: visible !important;
 }
 
@@ -500,6 +502,14 @@ body.dark .deal_card p {
 
 body.dark .deal_card span {
 	color: #93c5fd;
+}
+
+body.dark, html.dark {
+	background-color: #0f172a;
+}
+
+.homepage{
+	background-color: transparent;
 }
 
 /* Mobile */
