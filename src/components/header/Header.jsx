@@ -1,6 +1,6 @@
 import './header.css'
 import { useState } from 'react'
-import { FaUser, FaBars, FaTimes, FaHome, FaSearch, FaCreditCard } from 'react-icons/fa'
+import { FaUser, FaBars, FaTimes, FaHome, FaSearch, FaCreditCard, FaMoon, FaSun } from 'react-icons/fa'
 import Toggle from '../toggle/Toggle.jsx'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo.png'
@@ -62,7 +62,24 @@ const Header = ({ checked, toggleChange }) => {
 				</div>
 
 				<div className="header_right">
-					<Toggle checked={checked} onChange={toggleChange} />
+
+				<div className="theme_toggle_wrap">
+				{checked ? (
+					<FaMoon
+						className="theme_icon"
+						size={22}
+						style={{ transform: 'translate(-5px, 9px)' }}
+					/>
+				) : (
+					<FaSun
+						className="theme_icon"
+						size={22}
+						style={{ transform: 'translate(-5px, 9px)' }}
+					/>
+				)}
+
+		<Toggle checked={checked} onChange={toggleChange} />
+	</div>
 
 					<button
 						className="menu_btn"
