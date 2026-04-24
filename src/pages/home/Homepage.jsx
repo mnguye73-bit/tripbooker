@@ -140,8 +140,6 @@ const Homepage = () => {
 				</div>
 			)}
 
-		
-
 			<div
 				className="hero"
 				style={{
@@ -337,66 +335,6 @@ const Homepage = () => {
 						<span>Cruise</span>
 					</button>
 				</div>
-				
-				<div className="deals_section">
-	<h2>Popular Deals</h2>
-
-	<div className="deals_scroll">
-		<div className="deal_card">
-			<h3>St. Lucia Escape Resort</h3>
-			<p>Oceanfront villa package with round trip flights</p>
-			<span>Rating 9.7 ★</span>
-		</div>
-
-		<div className="deal_card">
-			<h3>Capella Hanoi</h3>
-			<p>Old Quarter stay with breakfast included</p>
-			<span>Rating 7.6 ★</span>
-		</div>
-
-		<div className="deal_card">
-			<h3>Hilton Garden Inn Hanoi</h3>
-			<p>Pool access only 1 mile from the city</p>
-			<span>Rating 6.4 ★</span>
-		</div>
-
-		<div className="deal_card">
-			<h3>Ritz-Carlton Charlotte</h3>
-			<p>Luxury stay with pool and breakfast</p>
-			<span>Rating 9.1 ★</span>
-		</div>
-
-		<div className="deal_card">
-			<h3>Hyatt Charlotte Downtown</h3>
-			<p>Breakfast included close to downtown</p>
-			<span>Rating 8.5 ★</span>
-		</div>
-
-		<div className="deal_card">
-			<h3>Omni Charlotte Hotel</h3>
-			<p>Pool stay less than 1 mile away</p>
-			<span>Rating 8.8 ★</span>
-		</div>
-
-		<div className="deal_card">
-			<h3>The Umstead Hotel</h3>
-			<p>Spa-style Raleigh stay with pool access</p>
-			<span>Rating 9.3 ★</span>
-		</div>
-
-		<div className="deal_card">
-			<h3>Raleigh Marriott</h3>
-			<p>City center hotel with breakfast included</p>
-			<span>Rating 8.6 ★</span>
-		</div>
-
-		<div className="deal_card">
-			<h3>Hyatt House Raleigh</h3>
-			<p>Pool and breakfast near downtown Raleigh</p>
-			<span>Rating 8.9 ★</span>
-		</div>
-	</div>
-</div>
 
 				<div className="submit_btn">
 					<button
@@ -425,8 +363,67 @@ const Homepage = () => {
 					</button>
 				</div>
 			</div>
-		</div>	
-		
+
+			<div className="deals_section">
+				<h2>Popular Deals</h2>
+
+				<div className="deals_scroll">
+					<div className="deal_card">
+						<h3>St. Lucia Escape Resort</h3>
+						<p>Oceanfront villa package with round trip flights</p>
+						<span>Rating 9.7 ★</span>
+					</div>
+
+					<div className="deal_card">
+						<h3>Capella Hanoi</h3>
+						<p>Old Quarter stay with breakfast included</p>
+						<span>Rating 7.6 ★</span>
+					</div>
+
+					<div className="deal_card">
+						<h3>Hilton Garden Inn Hanoi</h3>
+						<p>Pool access only 1 mile from the city</p>
+						<span>Rating 6.4 ★</span>
+					</div>
+
+					<div className="deal_card">
+						<h3>Ritz-Carlton Charlotte</h3>
+						<p>Luxury stay with pool and breakfast</p>
+						<span>Rating 9.1 ★</span>
+					</div>
+
+					<div className="deal_card">
+						<h3>Hyatt Charlotte Downtown</h3>
+						<p>Breakfast included close to downtown</p>
+						<span>Rating 8.5 ★</span>
+					</div>
+
+					<div className="deal_card">
+						<h3>Omni Charlotte Hotel</h3>
+						<p>Pool stay less than 1 mile away</p>
+						<span>Rating 8.8 ★</span>
+					</div>
+
+					<div className="deal_card">
+						<h3>The Umstead Hotel</h3>
+						<p>Spa-style Raleigh stay with pool access</p>
+						<span>Rating 9.3 ★</span>
+					</div>
+
+					<div className="deal_card">
+						<h3>Raleigh Marriott</h3>
+						<p>City center hotel with breakfast included</p>
+						<span>Rating 8.6 ★</span>
+					</div>
+
+					<div className="deal_card">
+						<h3>Hyatt House Raleigh</h3>
+						<p>Pool and breakfast near downtown Raleigh</p>
+						<span>Rating 8.9 ★</span>
+					</div>
+				</div>
+			</div>
+		</div>
 	)
 }
 
