@@ -22,6 +22,7 @@
 	padding-right: 1rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+	color: #1f2937;
 }
 
 .suggestion:last-of-type {
@@ -30,4 +31,28 @@
 
 .suggestion:hover { 
 	background-color: #e8eef8;
+}
+
+:global(body.dark) .input {
+	background: #111827;
+	color: #f9fafb;
+	border-color: #374151;
+}
+
+:global(body.dark) .input::placeholder {
+	color: #cbd5e1;
+}
+
+:global(body.dark) .suggestionsList {
+	background-color: #1f2937;
+	border-color: #374151;
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+:global(body.dark) .suggestion {
+	color: #f9fafb;
+}
+
+:global(body.dark) .suggestion:hover {
+	background-color: #111827;
 }

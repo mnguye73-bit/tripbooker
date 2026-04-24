@@ -11,6 +11,9 @@ import {
 	FaShip
 } from 'react-icons/fa'
 
+import beachPNG from '../../assets/beach.png'
+import beachNight from '../../assets/beachnight.jpg'
+
 const locationOptions = [
 	'Capella Hanoi',
 	'Hilton Garden Inn Hanoi',
@@ -26,6 +29,11 @@ const Homepage = () => {
 	const navigate = useNavigate()
 	const [pageReady, setPageReady] = useState(false)
 	const [isSubmitting, setIsSubmitting] = useState(false)
+
+	const [isDark, setIsDark] = useState(
+		document.body.classList.contains('dark') ||
+			document.documentElement.classList.contains('dark')
+	)
 
 	const [showLocationDropdown, setShowLocationDropdown] = useState(false)
 	const [showDatePicker, setShowDatePicker] = useState(false)
@@ -47,6 +55,35 @@ const Homepage = () => {
 		}, 150)
 
 		return () => clearTimeout(timer)
+	}, [])
+
+	useEffect(() => {
+		const updateDarkMode = () => {
+			setIsDark(
+				document.body.classList.contains('dark') ||
+					document.documentElement.classList.contains('dark')
+			)
+		}
+
+		updateDarkMode()
+
+		const bodyObserver = new MutationObserver(updateDarkMode)
+		const htmlObserver = new MutationObserver(updateDarkMode)
+
+		bodyObserver.observe(document.body, {
+			attributes: true,
+			attributeFilter: ['class']
+		})
+
+		htmlObserver.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['class']
+		})
+
+		return () => {
+			bodyObserver.disconnect()
+			htmlObserver.disconnect()
+		}
 	}, [])
 
 	useEffect(() => {
@@ -103,7 +140,14 @@ const Homepage = () => {
 
 			<h1 className="title">Find Your Destination!</h1>
 
-			<div className="hero">
+			<div
+				className="hero"
+				style={{
+					backgroundImage: `url(${isDark ? beachNight : beachPNG})`
+				}}
+			>
+				<div className={`hero_bg ${isDark ? 'night_bg' : 'day_bg'}`}></div>
+				<div className={`hero_overlay ${isDark ? 'dark_overlay' : 'light_overlay'}`}></div>
 				<div className="search_bar">
 					<div className="search_control" ref={locationRef}>
 						<button

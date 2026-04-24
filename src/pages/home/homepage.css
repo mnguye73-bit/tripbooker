@@ -8,6 +8,7 @@
 	margin: 0;
 }
 
+
 .search_control {
 	position: relative;
 }
@@ -369,4 +370,123 @@ body.dark .screen_spinner_overlay {
 body.dark .screen_spinner {
 	border-color: rgba(248, 250, 252, 0.25);
 	border-top-color: #f8fafc;
+}
+
+.hero {
+	position: relative;
+	
+}
+
+.hero_bg {
+	position: absolute;
+	inset: 0;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: opacity 0.45s ease;
+	z-index: 0;
+}
+
+.day_bg {
+	background-image: url('../../assets/beach.png');
+}
+
+.night_bg {
+	background-image: url('../../assets/beachnight.jpg');
+}
+
+.hero_overlay {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	transition: background 0.45s ease;
+}
+
+.light_overlay {
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.dark_overlay {
+	background: rgba(0, 0, 0, 0.38);
+}
+
+.hero > *:not(.hero_bg):not(.hero_overlay) {
+	position: relative;
+	z-index: 2;
+}
+
+body.dark .title {
+	color: #f9fafb;
+}
+
+body.dark .search_item {
+	background: rgba(15, 23, 42, 0.75);
+	color: #f9fafb;
+	border-color: #60a5fa;
+	backdrop-filter: blur(10px);
+}
+
+body.dark .search_item svg {
+	color: #93c5fd;
+}
+
+body.dark .option_item {
+	color: #e5e7eb;
+}
+
+body.dark .option_item svg {
+	color: #93c5fd;
+}
+
+body.dark .option_item_active {
+	background: rgba(30, 58, 138, 0.75);
+	box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.9);
+}
+
+body.dark .submit_btn button {
+	background: #1d4ed8;
+	color: #ffffff;
+	box-shadow: 0 12px 24px rgba(29, 78, 216, 0.35);
+}
+
+.hero {
+	overflow: visible !important;
+}
+
+.search_bar {
+	position: relative !important;
+	z-index: 1000 !important;
+}
+
+.search_control {
+	position: relative !important;
+	z-index: 1001 !important;
+}
+
+.search_popup {
+	position: absolute !important;
+	z-index: 99999 !important;
+}
+
+.options_bar {
+	position: relative !important;
+	z-index: 1 !important;
+}
+
+
+@media (max-width: 600px) {
+	.home_page {
+		min-height: 100vh;
+		background: var(--bg);
+	}
+
+	.hero {
+		min-height: calc(100vh - 80px);
+		padding-bottom: 90px;
+	}
+
+	.filler_footer {
+		display: none;
+	}
 }
