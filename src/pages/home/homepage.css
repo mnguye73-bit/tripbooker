@@ -200,7 +200,8 @@
 	position: relative;
 	min-height: calc(100vh - 90px);
 	height: auto;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: visible;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
