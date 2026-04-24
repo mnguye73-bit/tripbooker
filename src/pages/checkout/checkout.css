@@ -614,3 +614,69 @@
 		border-width: 7px;
 	}
 }
+
+body.dark .form_section,
+body.dark .booking_card,
+body.dark .price_box,
+body.dark .checkout_cta_panel,
+body.dark .success_card,
+body.dark .image_stack {
+	background: #1f2937;
+	border-color: #374151;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .section_header h2,
+body.dark .booking_title,
+body.dark .price_box h3,
+body.dark .price_total,
+body.dark .meta_value,
+body.dark .success_card h2 {
+	color: #f9fafb;
+}
+
+body.dark .section_header p,
+body.dark .booking_subtitle,
+body.dark .price_box p,
+body.dark .price_line,
+body.dark .meta_label,
+body.dark .cta_note,
+body.dark .success_card p {
+	color: #cbd5e1;
+}
+
+body.dark .form_row input,
+body.dark .small_field input,
+body.dark .small_field select {
+	background: #111827;
+	color: #f9fafb;
+	border-color: #374151;
+}
+
+body.dark .form_row input:focus,
+body.dark .small_field input:focus,
+body.dark .small_field select:focus {
+	background: #0f172a;
+	border-color: #60a5fa;
+}
+
+body.dark .booking_meta_item,
+body.dark .success_details {
+	background: #111827;
+	border-color: #374151;
+}
+
+body.dark .trust_item {
+	background: #111827;
+	color: #e5e7eb;
+}
+
+body.dark .secondary_btn {
+	background: #111827;
+	color: #60a5fa;
+	border-color: #374151;
+}
+
+body.dark .secondary_btn:hover {
+	background: #0f172a;
+}

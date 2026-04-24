@@ -306,3 +306,67 @@
 		border-width: 7px;
 	}
 }
+
+
+body.dark .title {
+	background: #0f172a;
+	color: #f9fafb;
+}
+
+body.dark .options_bar {
+	background: rgba(15, 23, 42, 0.45);
+	border-color: #60a5fa;
+}
+
+body.dark .option_item {
+	color: #e5e7eb;
+}
+
+body.dark .option_item:hover {
+	background: rgba(15, 23, 42, 0.65);
+}
+
+body.dark .option_item_active {
+	background: rgba(30, 58, 138, 0.75);
+	box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.9);
+}
+
+body.dark .option_item_active span,
+body.dark .option_item_active svg {
+	color: #93c5fd;
+}
+
+body.dark .search_popup {
+	background: #1f2937;
+	border-color: #374151;
+	box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .popup_title,
+body.dark .date_field label {
+	color: #f9fafb;
+}
+
+body.dark .dropdown_option,
+body.dark .date_field input,
+body.dark .traveler_input {
+	background: #111827;
+	color: #f9fafb;
+	border-color: #374151;
+}
+
+body.dark .dropdown_option:hover,
+body.dark .date_field input:hover,
+body.dark .date_field input:focus {
+	background: #0f172a;
+	border-color: #60a5fa;
+}
+
+body.dark .screen_spinner_overlay {
+	background: rgba(15, 23, 42, 0.45);
+}
+
+body.dark .screen_spinner {
+	border-color: rgba(248, 250, 252, 0.25);
+	border-top-color: #f8fafc;
+}

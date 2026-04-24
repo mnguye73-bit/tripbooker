@@ -562,4 +562,42 @@
 		height: 72px;
 		border-width: 7px;
 	}
+
+
+
+}
+
+body.dark .filters_panel,
+body.dark .card,
+body.dark .no_results,
+body.dark .search_popup {
+	background: #1f2937;
+	border-color: #374151;
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .card_content h3,
+body.dark .filters_title,
+body.dark .popup_title,
+body.dark .no_results {
+	color: #f9fafb;
+}
+
+body.dark .hotel_city,
+body.dark .card_content ul,
+body.dark .miles,
+body.dark .filter_item,
+body.dark .date_field label {
+	color: #cbd5e1;
+}
+
+body.dark .filter_item:hover {
+	background-color: #111827;
+}
+
+body.dark .date_search_button,
+body.dark .date_field input {
+	background: #111827;
+	color: #f9fafb;
+	border-color: #374151;
 }

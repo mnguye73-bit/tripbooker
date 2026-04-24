@@ -1,13 +1,16 @@
 .light {
-  --bg: white;
-  --text: black;
+	--bg: white;
+	--text: black;
+	--card: white;
+	--border: #dbe5ef;
 }
 
 .dark {
-  --bg: #403E3E;
-  --text: white;
+	--bg: #0f172a;
+	--text: white;
+	--card: #1f2937;
+	--border: #334155;
 }
-
 .canvas { 
 	height: 100vh;
 	display: flex;

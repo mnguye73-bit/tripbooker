@@ -234,4 +234,55 @@
 	.profile_card {
 		padding: 24px 22px;
 	}
+
+	body.dark .profile_page {
+	background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+	color: #e5e7eb;
+}
+
+	body.dark .profile_hero_card,
+	body.dark .profile_card {
+		background: #1f2937;
+		border-color: #374151;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+	}
+
+	body.dark .profile_hero_text h1,
+	body.dark .profile_card h2,
+	body.dark .info_value,
+	body.dark .stat_box strong,
+	body.dark .preference_value {
+		color: #f9fafb;
+	}
+
+	body.dark .profile_subtitle,
+	body.dark .profile_tag,
+	body.dark .info_label,
+	body.dark .stat_label,
+	body.dark .preference_label {
+		color: #cbd5e1;
+	}
+
+	body.dark .profile_info_row {
+		border-bottom-color: #374151;
+	}
+
+	body.dark .stat_box,
+	body.dark .preference_item {
+		background: #111827;
+		border-color: #374151;
+	}
+
+	body.dark .profile_avatar_wrap {
+		background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%);
+	}
+
+	body.dark .profile_avatar,
+	body.dark .info_label svg,
+	body.dark .stat_box svg {
+		color: #60a5fa;
+	}
+
+
+
 }
