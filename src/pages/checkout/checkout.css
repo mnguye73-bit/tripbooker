@@ -71,7 +71,7 @@
 .section_header p {
 	margin: 0;
 	font-size: 0.92rem;
-	color: #6b7c93;
+	color: #52606d;;
 	line-height: 1.4;
 }
 
@@ -216,7 +216,7 @@
 	margin: 0 0 18px;
 	font-size: 0.95rem;
 	line-height: 1.5;
-	color: #6b7c93;
+	color: #52606d;
 }
 
 .booking_meta {
@@ -245,7 +245,7 @@
 .meta_label {
 	display: block;
 	font-size: 0.8rem;
-	color: #6b7c93;
+	color: #52606d;
 	margin-bottom: 2px;
 	font-weight: 600;
 }
@@ -272,7 +272,7 @@
 .price_box p {
 	margin: 0 0 14px;
 	font-size: 0.95rem;
-	color: #6b7c93;
+	color: #52606d;
 }
 
 .price_line,
