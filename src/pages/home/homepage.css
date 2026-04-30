@@ -693,3 +693,160 @@ body.dark .deal_card span {
 }
 
 
+
+/* ===== 200% ZOOM ACCESSIBILITY FIX =====
+   Put this at the VERY BOTTOM so it overrides earlier icon rules. */
+.options_bar {
+	display: grid !important;
+	grid-template-columns: repeat(auto-fit, minmax(82px, 1fr)) !important;
+	justify-items: stretch !important;
+	align-items: stretch !important;
+	width: min(92vw, 820px) !important;
+	max-width: 92vw !important;
+	box-sizing: border-box !important;
+	gap: clamp(6px, 1.5vw, 14px) !important;
+	padding: clamp(10px, 2vw, 18px) !important;
+	overflow: hidden !important;
+}
+
+.option_item {
+	width: 100% !important;
+	min-width: 0 !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+	padding: clamp(6px, 1.4vw, 12px) !important;
+	font-size: clamp(0.68rem, 1.5vw, 1rem) !important;
+	text-align: center !important;
+}
+
+.option_item svg,
+.options_bar .option_item svg {
+	width: clamp(18px, 3vw, 30px) !important;
+	height: clamp(18px, 3vw, 30px) !important;
+	font-size: clamp(18px, 3vw, 30px) !important;
+	max-width: 100% !important;
+	flex-shrink: 1 !important;
+}
+
+.option_item span,
+.options_bar .option_item span {
+	display: block !important;
+	max-width: 100% !important;
+	min-width: 0 !important;
+	font-size: clamp(0.68rem, 1.5vw, 1rem) !important;
+	line-height: 1.1 !important;
+	overflow-wrap: anywhere !important;
+	word-break: normal !important;
+}
+
+@media (max-width: 900px) {
+	.options_bar {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		width: 92vw !important;
+		max-width: 92vw !important;
+		gap: 8px !important;
+		padding: 10px 8px !important;
+	}
+
+	.option_item {
+		padding: 6px 4px !important;
+		font-size: 11px !important;
+	}
+
+	.option_item svg,
+	.options_bar .option_item svg {
+		width: 20px !important;
+		height: 20px !important;
+		font-size: 20px !important;
+	}
+
+	.option_item span,
+	.options_bar .option_item span {
+		font-size: 11px !important;
+		line-height: 1.1 !important;
+	}
+}
+
+@media (max-width: 380px) {
+	.options_bar {
+		grid-template-columns: 1fr !important;
+	}
+}
+
+
+
+
+/* 200% zoom overflow fix */
+@media (max-width: 900px) {
+	.hero {
+		align-items: stretch;
+		padding-left: 12px;
+		padding-right: 12px;
+		gap: 24px;
+	}
+
+	.search_bar {
+		width: 100% !important;
+		max-width: 100% !important;
+		display: grid !important;
+		grid-template-columns: 1fr !important;
+		gap: 14px !important;
+		justify-items: center;
+		.search_bar {
+	overflow: visible !important;
+}
+	}
+
+	.search_control {
+		width: 100% !important;
+		max-width: 360px !important;
+	}
+
+	.search_control .search_item {
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		box-sizing: border-box;
+		font-size: clamp(0.85rem, 3vw, 1rem) !important;
+		padding: 10px 14px !important;
+		white-space: normal !important;
+		overflow-wrap: anywhere !important;
+	}
+
+	.search_control .search_item svg {
+		flex-shrink: 0;
+		font-size: 20px !important;
+	}
+
+	.options_bar {
+		width: 100% !important;
+		max-width: 100% !important;
+		box-sizing: border-box;
+	}
+
+	.submit_btn button {
+		width: min(100%, 260px) !important;
+		max-width: 100% !important;
+	}
+
+	/* Keep dropdowns above all home page buttons */
+.search_bar,
+.search_control {
+	overflow: visible !important;
+}
+
+.search_control:has(.search_popup) {
+	z-index: 999999 !important;
+}
+
+.search_popup {
+	z-index: 1000000 !important;
+}
+
+.options_bar,
+.submit_btn,
+.deals_section {
+	z-index: 1 !important;
+}
+}
