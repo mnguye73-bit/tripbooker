@@ -12,11 +12,13 @@ function Toggle({ checked, onChange }) {
 	};
 
 	return (
-		<label className="toggle">
+		<label className="toggle" htmlFor="theme-toggle">
 			<input
+				id="theme-toggle"
 				type="checkbox"
 				checked={checked}
 				onChange={handleChange}
+				aria-label="Toggle dark mode"
 			/>
 			<span className="slider"></span>
 		</label>
